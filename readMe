@@ -1,0 +1,3 @@
+Now project consists of two pages:
+1. firebaseInit.html - authorization page (connect link with firebase and send user data) then redirect to LoggedIn page.
+2. loggedIn.html - send request to get name one of same tests.
