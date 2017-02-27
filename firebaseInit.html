@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+	</head>
+
+	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css" />
+    
+<!--Initialize Firebase-->
+<script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script>
+<script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>
+
+<script>
+	//** 1. config data from FireBase **//
+    var config = {
+        apiKey: "AIzaSyBC9eQmvpcEuOIWEhnKOcNvxm3G60mWOpA",
+        authDomain: "coopcopy-5dc9f.firebaseapp.com",
+        databaseURL: "https://coopcopy-5dc9f.firebaseio.com",
+        storageBucket: "coopcopy-5dc9f.appspot.com",
+        messagingSenderId: "348681530274"
+    };
+	// init config
+    firebase.initializeApp(config);
+	
+	//** 2. authorization config
+	// FirebaseUI config.
+	var uiConfig = {
+	signInSuccessUrl: 'file:///C:/Users/%D0%93%D0%B5%D0%BE%D1%80%D0%B3%D0%B8%D0%B9/Desktop/Arcadia/loggedIn.html',
+	signInOptions: [
+		// Leave the lines as is for the providers you want to offer your users.
+		firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+		firebase.auth.EmailAuthProvider.PROVIDER_ID
+	],
+	// Terms of service url.
+	tosUrl: '<your-tos-url>'
+	};
+
+	// Initialize the FirebaseUI Widget using Firebase.
+	var ui = new firebaseui.auth.AuthUI(firebase.auth());
+	// The start method will wait until the DOM is loaded.
+	ui.start('#firebaseui-auth-container', uiConfig);
+</script>
+	
+	
+<body>
+  <h1 align="center" style="style:white;"> Firebase auth Quickstart Demo</h1>
+  <div id="firebaseui-auth-container"></div>
+</body>
+</html>
+

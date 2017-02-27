@@ -1,0 +1,57 @@
+<html lang = "en">
+<head>
+    <title>EasyAuth</title>
+	<meta charset="UTF-8">
+</head>
+
+<!--Initialize Firebase-->
+<script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script>
+<script>
+
+    var config = {
+        apiKey: "AIzaSyBC9eQmvpcEuOIWEhnKOcNvxm3G60mWOpA",
+        authDomain: "coopcopy-5dc9f.firebaseapp.com",
+        databaseURL: "https://coopcopy-5dc9f.firebaseio.com",
+        storageBucket: "coopcopy-5dc9f.appspot.com",
+        messagingSenderId: "348681530274"
+    };
+    firebase.initializeApp(config);
+	
+	
+	firebase.auth().onAuthStateChanged(function(user){
+	// if good authorization
+	if(user){
+		document.body.innerHTML = '<h1>' + user.displayName +  ' </h1>';	// display name
+		//writeUserData("TEST 0999"); 
+		
+		//** 2. request to read data from database
+		firebase.database().ref('/questions/testId1/questionId12').once('value').then(function(snapshot) {
+			var name = snapshot.val().name;
+			document.body.innerHTML = '<h1>question name: ' + name +  ' </h1>';	// display name of test 'questionId12'
+		});
+	}
+	else{
+	 document.body.innerHTML =  "Error 	// if good authorization";
+	}
+});
+
+// write function to firebase database =)
+function writeUserData(name) {
+  firebase.database().ref('/questions/testId1/questionId12').set({
+    name: name,
+    positionTest: 1,
+    qeustionType: "SingleChoice" 
+  });
+}
+</script>
+
+
+
+<body>
+<script>
+
+</script>
+
+</body>
+</html>
+
