@@ -18,7 +18,7 @@ public class DBConnector  {
 
     public static void init() throws FileNotFoundException
     {
-        FileInputStream serviceAccount = new FileInputStream("C:\\temp\\ArcadiaWebProject\\coopcopy-5dc9f-firebase-adminsdk-zgprh-9bab625579.json");
+        FileInputStream serviceAccount = new FileInputStream("C:\\IntelliJIDEA2016.3.5(64)Project\\Arcadia\\ArcadiaWebProject\\coopcopy-5dc9f-firebase-adminsdk-zgprh-9bab625579.json");
 
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredential(FirebaseCredentials.fromCertificate(serviceAccount))

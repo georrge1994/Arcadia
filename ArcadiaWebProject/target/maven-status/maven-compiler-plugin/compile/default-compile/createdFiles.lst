@@ -1,10 +1,10 @@
-servlets\MyServletUpload.class
 support\Course.class
 support\LocalUser.class
-servlets\MyServletUpload$1.class
+servlets\Controller$1.class
+servlets\Controller.class
 support\Group.class
-servlets\Point.class
 support\DBConnector.class
 support\Test.class
 support\User.class
-servlets\MyServlet.class
+servlets\ReportDesigner.class
+servlets\Authorization.class
