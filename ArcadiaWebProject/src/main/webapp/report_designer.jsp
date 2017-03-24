@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link href="CSS\style.css" rel="stylesheet">
     <title>Designer</title>
 </head>
 <body>
