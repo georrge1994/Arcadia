@@ -1,6 +1,5 @@
 support\Course.class
 support\LocalUser.class
-servlets\Controller$1.class
 servlets\Controller.class
 support\Group.class
 support\DBConnector.class
@@ -8,3 +7,4 @@ support\Test.class
 support\User.class
 servlets\ReportDesigner.class
 servlets\Authorization.class
+support\XmlCreator.class
