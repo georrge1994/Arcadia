@@ -25,17 +25,54 @@ public class Controller extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String subject = request.getParameter("subject");
-        String message = request.getParameter("message");
+        int index_report = Integer.parseInt(request.getParameter("type_report"));
+        switch(index_report){
+            case(1):
+                String date1 = request.getParameter("date1");
+                String date2 = request.getParameter("date2");
 
-        System.out.println("AJAX send me following data:" +
-                "1 name = " + name + "\n" +
-                "2 email = " + email + "\n" +
-                "3 subject = " + subject + "\n" +
-                "4 message = " + message + "\n" +
-                "");
+                final Vector<User> users = new Vector<User>();
+                DBConnector.init();
+                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference ref = database.getReference("/");
+                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        users.clear();
+
+                        for (DataSnapshot userSnapshot: dataSnapshot.child("users").getChildren())
+                        {
+                            users.add(new User(userSnapshot.getKey(), (String) userSnapshot.child("email").getValue(),(String) userSnapshot.child("name").getValue(),(String) userSnapshot.child("role").getValue()
+
+                            ));
+                        }
+                        XmlCreator tempCreator = new XmlCreator("tempCreator", users, "1489795200", "1589795200");
+
+                    }
+
+                    public void onCancelled(DatabaseError databaseError) {
+                        System.out.println("The read failed: " + databaseError.getCode());
+                    }
+                });
+                break;
+            case(2):
+
+                break;
+            case(3):
+
+                break;
+            case(4):
+
+                break;
+            case(5):
+
+                break;
+            case(6):
+
+                break;
+            case(7):
+
+                break;
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
