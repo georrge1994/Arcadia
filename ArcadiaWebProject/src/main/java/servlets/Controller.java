@@ -1,21 +1,22 @@
 package servlets;
 
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
-import com.google.firebase.auth.FirebaseCredentials;
 import com.google.firebase.database.*;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-import java.util.List;
 import java.util.Vector;
 
 import support.*;
+import support.pdf.Data;
+import support.pdf.PdfCreator;
+import support.User;
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 @WebServlet("/controller")
 public class Controller extends HttpServlet {
@@ -28,6 +29,7 @@ public class Controller extends HttpServlet {
         int index_report = Integer.parseInt(request.getParameter("type_report"));
         switch(index_report){
             case(1):
+                System.out.println("XML");
                 String date1 = request.getParameter("date1");
                 String date2 = request.getParameter("date2");
 
@@ -56,6 +58,22 @@ public class Controller extends HttpServlet {
                 break;
             case(2):
 
+                System.out.println("PDF");
+                Data data = new Data();
+
+                Calendar cal = GregorianCalendar.getInstance();
+                cal.set(Calendar.DAY_OF_MONTH, 01);
+                cal.set(Calendar.MONTH, 1);
+                cal.set(Calendar.YEAR, 2004);
+                Timestamp tstamp1 = new Timestamp(cal.getTimeInMillis());
+
+                cal.set(Calendar.DAY_OF_MONTH, 01);
+                cal.set(Calendar.MONTH, 1);
+                cal.set(Calendar.YEAR, 2017);
+                Timestamp tstamp2 = new Timestamp(cal.getTimeInMillis());
+
+                PdfCreator pdfReport = new PdfCreator("Test1", data,tstamp1, tstamp2);
+                pdfReport.createPDF_1();
                 break;
             case(3):
 

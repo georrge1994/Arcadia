@@ -60,7 +60,8 @@ public class PdfCreator {
         contentStream.close() ;
 
         // saving the document
-        document.save("src\\main\\java\\support\\pdf\\reports\\" + FILE_data) ;
+      //  document.save("src\\main\\java\\support\\pdf\\reports\\" + FILE_data) ;
+        document.save("D:/" + FILE_data) ;
 
         //Closing the document
         document.close() ;
