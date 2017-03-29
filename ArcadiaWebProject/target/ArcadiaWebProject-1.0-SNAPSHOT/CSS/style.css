@@ -9,12 +9,20 @@ table {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
     font-size: 14px;
     border-collapse: collapse;
+<<<<<<< HEAD
     text-align:  left;
+=======
+    /*text-align: left;*/
+>>>>>>> 8100005154a950ec6e57b3e9a98ffea95d76b71b
 }
 th, td:first-child {
     background: #AFCDE7;
     color: white;
+<<<<<<< HEAD
     padding: 10px 20px;
+=======
+    padding: 6px 10px;
+>>>>>>> 8100005154a950ec6e57b3e9a98ffea95d76b71b
 }
 th, td {
     border-style: solid;
@@ -25,5 +33,36 @@ td {
     background: #D8E6F3;
 }
 th:first-child, td:first-child {
+<<<<<<< HEAD
     text-align: left;
 }
+=======
+    text-align: center;}
+.sendsubmit {
+
+    font-weight: 700;
+
+    color: white;
+    text-decoration: none;
+    padding: .8em 1em calc(.8em + 3px);
+    border-radius: 3px;
+    background: rgb(64,199,129);
+    box-shadow: 0 -3px rgb(53,167,110) inset;
+    transition: 0.2s;
+
+}
+.sendsubmit:hover { background: rgb(53, 167, 110); }
+.sendsubmit:active {
+    background: rgb(33,147,90);
+    box-shadow: 0 3px rgb(33,147,90) inset;
+
+}
+
+input[disabled]{
+    background-color: LightGray;
+}
+
+select[disabled]{
+    background-color: LightGray;
+}
+>>>>>>> 8100005154a950ec6e57b3e9a98ffea95d76b71b
