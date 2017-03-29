@@ -1,21 +1,22 @@
 package servlets;
 
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
-import com.google.firebase.auth.FirebaseCredentials;
 import com.google.firebase.database.*;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-import java.util.List;
 import java.util.Vector;
 
 import support.*;
+import support.pdf.Data;
+import support.pdf.PdfCreator;
+import support.User;
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 @WebServlet("/controller")
 public class Controller extends HttpServlet {
@@ -25,17 +26,71 @@ public class Controller extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String subject = request.getParameter("subject");
-        String message = request.getParameter("message");
+        int index_report = Integer.parseInt(request.getParameter("type_report"));
+        switch(index_report){
+            case(1):
+                System.out.println("XML");
+                String date1 = request.getParameter("date1");
+                String date2 = request.getParameter("date2");
 
-        System.out.println("AJAX send me following data:" +
-                "1 name = " + name + "\n" +
-                "2 email = " + email + "\n" +
-                "3 subject = " + subject + "\n" +
-                "4 message = " + message + "\n" +
-                "");
+                final Vector<User> users = new Vector<User>();
+                DBConnector.init();
+                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference ref = database.getReference("/");
+                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        users.clear();
+
+                        for (DataSnapshot userSnapshot: dataSnapshot.child("users").getChildren())
+                        {
+                            users.add(new User(userSnapshot.getKey(), (String) userSnapshot.child("email").getValue(),(String) userSnapshot.child("name").getValue(),(String) userSnapshot.child("role").getValue()
+
+                            ));
+                        }
+                        XmlCreator tempCreator = new XmlCreator("tempCreator", users, "1489795200", "1589795200");
+
+                    }
+
+                    public void onCancelled(DatabaseError databaseError) {
+                        System.out.println("The read failed: " + databaseError.getCode());
+                    }
+                });
+                break;
+            case(2):
+
+                System.out.println("PDF");
+                Data data = new Data();
+
+                Calendar cal = GregorianCalendar.getInstance();
+                cal.set(Calendar.DAY_OF_MONTH, 01);
+                cal.set(Calendar.MONTH, 1);
+                cal.set(Calendar.YEAR, 2004);
+                Timestamp tstamp1 = new Timestamp(cal.getTimeInMillis());
+
+                cal.set(Calendar.DAY_OF_MONTH, 01);
+                cal.set(Calendar.MONTH, 1);
+                cal.set(Calendar.YEAR, 2017);
+                Timestamp tstamp2 = new Timestamp(cal.getTimeInMillis());
+
+                PdfCreator pdfReport = new PdfCreator("Test1", data,tstamp1, tstamp2);
+                pdfReport.createPDF_1();
+                break;
+            case(3):
+
+                break;
+            case(4):
+
+                break;
+            case(5):
+
+                break;
+            case(6):
+
+                break;
+            case(7):
+
+                break;
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
