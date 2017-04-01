@@ -15,17 +15,12 @@ $('#design_form input').on('change', function() {
 function DisableUnnecessary(){
     select_report = $('input[name=select-report]:checked', '#design_form').val(); // get class name checked report
 
-    $('#design_form :input').prop('disabled', true);    // disable all
+     $('#design_form :input').prop('disabled', true);    // disable all
 
     $('.' + select_report).prop('disabled', false);        // enable a needed report
     $('.special-radio').prop('disabled', false);        // enable radio-buttons
     $('.sendsubmit').prop('disabled',false);            // enable send-button
-}
-
-function createPostData(){
-    var index_report = select_report.replace('report','');
-    var str = 'type_report=' + index_report + '&'+ $('.' + select_report).serialize();
-    return str;
+    $('.type_report').prop('disabled',false);            // enable type_report
 }
 
 /*

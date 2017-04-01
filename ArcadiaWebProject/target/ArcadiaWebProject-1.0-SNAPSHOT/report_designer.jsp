@@ -201,8 +201,11 @@
             </tr>
             <tr>
                 <td colspan="7" >
-                    <input name="submit"  type="submit" class="sendsubmit" id="submit_pdf" value="PDF" >
-                    <input name="submit"  type="submit" class="sendsubmit" id="submit_xml" value="XML" style="background-color: brown;">
+                    <select class="type_report" name="type_report" id="type_report">
+                        <option>PDF</option>
+                        <option>XML</option>
+                    </select>
+                    <input name="submit"  type="submit" class="sendsubmit" id="submit_pdf" value="GET Report" >
                 </td>
             </tr>
         </table>
