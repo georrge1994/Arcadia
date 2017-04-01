@@ -7,6 +7,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Vector;
 
 import support.*;
@@ -32,7 +38,7 @@ public class Controller extends HttpServlet {
                 System.out.println("XML");
                 String date1 = request.getParameter("date1");
                 String date2 = request.getParameter("date2");
-
+                System.out.println("date1 " + date1 + " date2 " + date2);
                 final Vector<User> users = new Vector<User>();
                 DBConnector.init();
                 final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -91,10 +97,78 @@ public class Controller extends HttpServlet {
 
                 break;
         }
+
+        performTask(request, response);
+        String fileName = "D:\\Test1.pdf";
+        // Find this file id in database to get file name, and file type
+
+        // You must tell the browser the file type you are going to send
+        // for example application/pdf, text/plain, text/html, image/jpg
+        File my_file = new File(fileName);
+        // Make sure to show the download dialog
+        response.setHeader("Content-disposition","attachment; filename=Test1.pdf");
+        response.setHeader("Content-Type","Application/x-pdf;charset=UTF-8");
+        response.setHeader("Content-Length", String.valueOf(my_file.length()));
+
+        // Assume file name is retrieved from database
+        // For example D:\\file\\test.pdf
+
+        Path p = Paths.get("D:\\Test1.pdf");
+        response.getOutputStream().write(Files.readAllBytes(p));
+/*
+        // This should send the file to browser
+        OutputStream out = response.getOutputStream();
+        FileInputStream in = new FileInputStream(my_file);
+        byte[] buffer = new byte[4096];
+        int length;
+        while ((length = in.read(buffer)) > 0){
+            out.write(buffer, 0, length);
+        }
+        in.close();
+        out.flush();*/
+
     }
 
+    private void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+            IOException {
+
+   /*     String pdfFileName = "D:/Test1.pdf";
+        //String contextPath = getServletContext().getRealPath(File.separator);
+        File pdfFile = new File(pdfFileName);
+
+        response.setContentType("application/pdf");
+        response.addHeader("Content-Disposition", "attachment; filename=" + pdfFileName);
+        response.setContentLength((int) pdfFile.length());
+
+        FileInputStream fileInputStream = new FileInputStream(pdfFile);
+        OutputStream responseOutputStream = response.getOutputStream();
+        int bytes;
+        while ((bytes = fileInputStream.read()) != -1) {
+            responseOutputStream.write(bytes);
+        }*/
+    }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-     /*   DBConnector.init();
+        System.out.println("get");
+        String date1 = request.getParameter("date1");
+        String date2 = request.getParameter("date2");
+        System.out.println("date1 " + date1 + " date2 " + date2);
+        String fileName = "D:\\Test1.pdf";
+        // Find this file id in database to get file name, and file type
+
+        // You must tell the browser the file type you are going to send
+        // for example application/pdf, text/plain, text/html, image/jpg
+        File my_file = new File(fileName);
+        // Make sure to show the download dialog
+        response.setHeader("Content-disposition","attachment; filename=Test1.pdf");
+        response.setHeader("Content-Type","Application/x-pdf;charset=UTF-8");
+        response.setHeader("Content-Length", String.valueOf(my_file.length()));
+
+        // Assume file name is retrieved from database
+        // For example D:\\file\\test.pdf
+
+        Path p = Paths.get("D:\\Test1.pdf");
+        response.getOutputStream().write(Files.readAllBytes(p));
+        /*   DBConnector.init();
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("/");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
