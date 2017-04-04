@@ -5,7 +5,7 @@
     <title>Designer</title>
 </head>
 <body>
-    <form id="design_form" name="design_form" method="post">
+    <form id="design_form" name="design_form" method="get" action="http://localhost:8080/controller">
         <table width="872" align="center">
             <tr>
                 <td colspan="7" >
@@ -186,7 +186,7 @@
                 <td><input class="report7" type="date" name="date11" id="date11"></td>
                 <td>
                     <input class="report7" type="date" name="date12" id="date12"></td>
-                <td><select class="report7" name="select10" id="select14">
+                <td><select class="repozrt7" name="select10" id="select14">
                     <option>10</option>
                     <option>20</option>
                     <option>30</option>
@@ -201,12 +201,16 @@
             </tr>
             <tr>
                 <td colspan="7" >
-                    <input name="submit"  type="submit" class="sendsubmit" id="submit_pdf" value="PDF" >
-                    <input name="submit"  type="submit" class="sendsubmit" id="submit_xml" value="XML" style="background-color: brown;">
+                    <select class="type_report" name="type_report" id="type_report">
+                        <option>PDF</option>
+                        <option>XML</option>
+                    </select>
+                    <input name="submit"  type="submit" class="sendsubmit" id="submit_pdf" value="GET Report" >
                 </td>
             </tr>
         </table>
     </form>
+
 </body>
 </html>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
