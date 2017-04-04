@@ -1,22 +1,23 @@
 package servlets;
 
 import com.google.firebase.database.*;
+import support.DBConnector;
+import support.Group;
+import support.User;
+import support.XmlCreator;
+import support.pdf.Data;
+import support.pdf.PdfCreator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Vector;
-
-import support.*;
-import support.pdf.Data;
-import support.pdf.PdfCreator;
-import support.User;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Vector;
 
 @WebServlet("/controller")
 public class Controller extends HttpServlet {
@@ -32,7 +33,6 @@ public class Controller extends HttpServlet {
                 System.out.println("XML");
                 String date1 = request.getParameter("date1");
                 String date2 = request.getParameter("date2");
-
                 final Vector<User> users = new Vector<User>();
                 DBConnector.init();
                 final FirebaseDatabase database = FirebaseDatabase.getInstance();
