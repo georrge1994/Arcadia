@@ -67,7 +67,7 @@ public class XmlCreator {
                 Element e_user = doc.createElement("user");
                 Element e_user_number = doc.createElement("userNumber");
                 Element e_user_name = doc.createElement("userName");
-                Element e_user_date = doc.createElement("userRegistrationDate");
+                Element e_user_date = doc.createElement("userRegistrationDte");
 
                 e_user_number.setTextContent(users.get(i).getKey());
                 e_user_name.setTextContent(users.get(i).getName());
@@ -78,11 +78,12 @@ public class XmlCreator {
                 e_user.appendChild(e_user_date);
                 e_users.appendChild(e_user);
             }
+        } catch (ParserConfigurationException e) {
+        } finally {
             // Сохраняем Document в XML-файл
-            if (doc != null) {
+            if (doc != null)
                 writeDocument(doc, "D:/" + FILE_data);
-            }
-        } catch (ParserConfigurationException e) {}
+        }
     }
 
     //Сохранение DOM в файл
