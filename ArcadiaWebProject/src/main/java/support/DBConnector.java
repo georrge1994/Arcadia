@@ -12,7 +12,7 @@ import java.util.*;
 public class DBConnector {
 
     public synchronized static void init() throws FileNotFoundException {
-        FileInputStream serviceAccount = new FileInputStream("C:\\Projects\\arcadia_test_projects\\lesson2\\coopcopy-5dc9f-firebase-adminsdk-zgprh-9bab625579.json");
+        FileInputStream serviceAccount = new FileInputStream("D:\\Arcadia\\myCurrent\\Arcadia\\ArcadiaWebProject\\coopcopy-5dc9f-firebase-adminsdk-zgprh-9bab625579.json");
 
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredential(FirebaseCredentials.fromCertificate(serviceAccount))
