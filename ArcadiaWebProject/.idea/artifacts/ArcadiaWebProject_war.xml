@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ArcadiaWebProject:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="ArcadiaWebProject-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="ArcadiaWebProject:war exploded" />
+    </root>
+  </artifact>
+</component>
