@@ -1,6 +1,10 @@
 package servlets;
 
-import com.google.firebase.database.*;
+import support.Collection;
+import support.DBConnector;
+import support.XmlCreator;
+import support.pdf.Data;
+import support.pdf.PdfCreator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,16 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Vector;
-
-import support.*;
-import support.pdf.Data;
-import support.pdf.PdfCreator;
-import support.User;
-import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -38,28 +36,75 @@ public class Controller extends HttpServlet {
                 String date1 = request.getParameter("date1");
                 String date2 = request.getParameter("date2");
                 System.out.println("date1 " + date1 + " date2 " + date2);
-                final Vector<User> users = new Vector<User>();
+
                 DBConnector.init();
-                final FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference ref = database.getReference("/");
-                ref.addListenerForSingleValueEvent(new ValueEventListener() {
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        users.clear();
+                Collection collection = new Collection();
+                DBConnector connector = new DBConnector();
 
-                        for (DataSnapshot userSnapshot: dataSnapshot.child("users").getChildren())
-                        {
-                            users.add(new User(userSnapshot.getKey(), (String) userSnapshot.child("email").getValue(),(String) userSnapshot.child("name").getValue(),(String) userSnapshot.child("role").getValue()
+                //-------- для 1 отчета---------------------------------------------------------------------------------
 
-                            ));
-                        }
-                        XmlCreator tempCreator = new XmlCreator("tempCreator", users, "1489795200", "1589795200");
+                long date_1 = 0L;
+                long date_2 = 1589795200L;
+                connector.getSignedUsersBetweenDates(collection, date_1, date_2);
 
+                synchronized (collection)
+                {
+                    try {
+                        collection.wait();
                     }
-
-                    public void onCancelled(DatabaseError databaseError) {
-                        System.out.println("The read failed: " + databaseError.getCode());
+                    catch (InterruptedException e) {
                     }
-                });
+                }
+
+                String object = "student";
+                int users_num = collection.outer.size()-1;
+                String summary = "Number of registered students from " + date_1 + " to " + date_2 + ": " +
+                                    users_num + " people";
+
+                //------------------------------------------------------------------------------------------------------
+
+                //-------- для 2 отчета---------------------------------------------------------------------------------
+                /*
+                long date_1 = 0L;
+                long date_2 = 1589795200L;
+                connector.getCoursesBetweenDates(collection, date_1, date_2);
+
+                synchronized (collection)
+                {
+                    try {
+                        collection.wait();
+                    }
+                    catch (InterruptedException e) {
+                    }
+                }
+
+                String object = "student";
+                int students_num = collection.outer.size()-1;
+                String summary = "Number of registered students for the course from " + date_1 + " to " +
+                                    date_2 + ": " + students_num;
+                */
+                //------------------------------------------------------------------------------------------------------
+
+                //-------- для 3 отчета---------------------------------------------------------------------------------
+                /*
+                String type = "hi";
+                int nums = 15;
+                connector.getUsersRating(collection, type , nums);
+
+                synchronized (collection)
+                {
+                    try {
+                        collection.wait();
+                    }
+                    catch (InterruptedException e) {
+                    }
+                }
+
+                String object = "course";
+                String summary = ""; //???????????????????????????????
+                */
+                //------------------------------------------------------------------------------------------------------
+                XmlCreator tempCreator = new XmlCreator("tempCreator", collection, date1, date2, object, summary);
                 break;
             case(2):
 
@@ -110,7 +155,7 @@ public class Controller extends HttpServlet {
     }
 
     private void addFileToResponce(HttpServletRequest request, HttpServletResponse response,
-                             String fileName, String typeFile) throws ServletException, IOException {
+                                   String fileName, String typeFile) throws ServletException, IOException {
 
         File my_file = new File("D:\\" + fileName);
         // Make sure to show the download dialog
