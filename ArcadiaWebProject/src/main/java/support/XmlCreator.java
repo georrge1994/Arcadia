@@ -17,19 +17,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Vector;
 
-public class XmlCreator {
+public class XmlCreator implements Constants{
     private  final  String  FILE_data;
     Vector<User> users;
-    String date1, date2;
     String summary;
     String object;
     Collection collection;
 
-    //public XmlCreator(String file_name, Vector<User> users, String date1, String date2){
-    public XmlCreator(String file_name, Collection collection, String date1, String date2, String object, String summary){
-        this.date1= date1;
-        this.date2 = date2;
-        //this.users = users;
+    public XmlCreator(String file_name, Collection collection,  String object, String summary){
         this.collection = collection;
         this.summary = summary;
         this.object = object;
@@ -89,7 +84,7 @@ public class XmlCreator {
             System.out.println("Collection cheсk ... \n ... collection size is " + this.collection.outer.size());
 
             //-----заполнение--------------------------------------------------------------
-            for(int i = 1; i < this.collection.outer.size(); i++){
+            for(int i = 0; i < this.collection.outer.size(); i++){
                 //создание элемента
                 Element e_object = doc.createElement(this.object);
                 //по столбцам
@@ -117,7 +112,7 @@ public class XmlCreator {
         } finally {
             // Сохраняем Document в XML-файл
             if (doc != null)
-                writeDocument(doc, "D:/" + FILE_data);
+                writeDocument(doc, PATH + FILE_data);
         }
     }
 

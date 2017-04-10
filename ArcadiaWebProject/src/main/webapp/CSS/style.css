@@ -3,26 +3,37 @@
 
 body {
     font-family: 'Roboto', sans-serif;
+}
 
+h3{
+    text-align: center;
+}
+
+h5{
+    padding-bottom: 5px;
+    padding-top: 5px;
+    font-size: 80px;
+}
+
+.right{
+    text-align: right;
 }
 
 /* Style the tab */
-div.tab {
+div.tab{
     overflow: hidden;
-    /* background-color:#337AB7 ;*/
     background-color:#57a3e5;
     padding-bottom: 20px;
 }
 
 /* Style the tab content */
-.tabcontent {
+.tabcontent{
     display: none;
 }
 
-.desbl
-{
+.design-block{
     width: 25%;
-    height:100%;
+    height:150%;
     float: left;
     padding-left: 3%;
     padding-right: 5%;
@@ -31,24 +42,17 @@ div.tab {
 }
 
 
-.vevblock
-{
+.view-block{
     float: right;
-    width: 60%;
+    width: 75%;
     padding-right: 5%;
-    /*background-color:blueviolet;*/
 }
 
-.CentrGeorg
-{
-    width:40%;
-    margin:0 auto;
-
+.center{
+    text-align: center;
 }
-div.tabHeadtext
-{
 
-    /* background-color: #2FAFCC;*/
+div.tabHeadtext{
     background-color: #57a3e5;
 
     color: white;
@@ -59,6 +63,7 @@ div.tabHeadtext
     padding-bottom: 70px;
     padding-left: 60px;
 }
+
 .rightpic {
     float: right; /* Выравнивание по правому краю */
     margin-top: 0px;
@@ -66,8 +71,8 @@ div.tabHeadtext
     margin-left: 5px;
     /* Отступы вокруг фотографии */
 }
-.black_betty
-{
+
+.black_betty{
     color: black;
 }
 
@@ -116,3 +121,89 @@ div.tabHeadtext
     right: 0;
 }
 
+/*--------------------SWITCH-------------------------------*/
+
+.flipswitch {
+    position: relative;
+    width: 86px;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select: none;
+}
+
+.flipswitch input[type=checkbox] {
+    display: none;
+}
+
+.flipswitch-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid #999999;
+    border-radius: 0px;
+}
+
+.flipswitch-inner {
+    width: 200%;
+    margin-left: -100%;
+    -webkit-transition: margin 0.3s ease-in 0s;
+    -moz-transition: margin 0.3s ease-in 0s;
+    -ms-transition: margin 0.3s ease-in 0s;
+    -o-transition: margin 0.3s ease-in 0s;
+    transition: margin 0.3s ease-in 0s;
+}
+
+.flipswitch-inner:before, .flipswitch-inner:after {
+    float: left;
+    width: 50%;
+    height: 23px;
+    padding: 0;
+    line-height: 23px;
+    font-size: 16px;
+    color: white;
+
+    font-weight: normal;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.flipswitch-inner:before {
+    content: "PDF";
+    padding-left: 12px;
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+.flipswitch-inner:after {
+    content: "XML";
+    padding-right: 12px;
+    background-color: #FFFFFF;
+    color: #000000;
+    text-align: right;
+}
+
+.flipswitch-switch {
+    width: 31px;
+    margin: -4px;
+    background: #FFFFFF;
+    border: 1px solid #999999;
+    border-radius: 0px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 61px;
+    -webkit-transition: all 0.3s ease-in 0s;
+    -moz-transition: all 0.3s ease-in 0s;
+    -ms-transition: all 0.3s ease-in 0s;
+    -o-transition: all 0.3s ease-in 0s;
+    transition: all 0.3s ease-in 0s;
+}
+
+.flipswitch-cb:checked + .flipswitch-label .flipswitch-inner {
+    margin-left: 0;
+}
+
+.flipswitch-cb:checked + .flipswitch-label .flipswitch-switch {
+    right: 0;
+}

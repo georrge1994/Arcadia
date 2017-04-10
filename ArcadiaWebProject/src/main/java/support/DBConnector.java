@@ -5,6 +5,7 @@ import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseCredentials;
 import com.google.firebase.database.*;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -12,8 +13,7 @@ import java.util.*;
 public class DBConnector {
 
     public synchronized static void init() throws FileNotFoundException {
-        FileInputStream serviceAccount = new FileInputStream("D:\\Arcadia\\myCurrent\\Arcadia\\ArcadiaWebProject\\coopcopy-5dc9f-firebase-adminsdk-zgprh-9bab625579.json");
-
+        FileInputStream serviceAccount = new FileInputStream("C:\\IntelliJIDEA2016.3.5(64)Project\\Arcadia\\ArcadiaWebProject\\resources\\coopcopy-5dc9f-firebase-adminsdk-zgprh-9bab625579.json");
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredential(FirebaseCredentials.fromCertificate(serviceAccount))
                 .setDatabaseUrl("https://coopcopy-5dc9f.firebaseio.com/")
