@@ -118,7 +118,6 @@ public class DBConnector {
             }
         });
     }
-
     public void getUsersRating(final Collection collection, String type, int howMuch) {
         ArrayList<User> allUsers = new ArrayList<User>();
         ArrayList<User> result = new ArrayList<User>();
@@ -198,9 +197,6 @@ public class DBConnector {
 
     }
 }
-
-
-
 
 
 
