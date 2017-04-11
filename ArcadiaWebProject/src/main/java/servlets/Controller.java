@@ -1,6 +1,11 @@
 package servlets;
 
-import com.google.firebase.database.*;
+import support.Collection;
+import support.Constants;
+import support.DBConnector;
+import support.XmlCreator;
+import support.pdf.Data;
+import support.pdf.PdfCreator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,62 +13,109 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Vector;
-
-import support.*;
-import support.pdf.Data;
-import support.pdf.PdfCreator;
-import support.User;
-import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 @WebServlet("/controller")
-public class Controller extends HttpServlet {
+public class Controller extends HttpServlet implements Constants {
+
+    private Long getLongTime(String string_date) {
+        long milliseconds = 0L;
+
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-mm-dd");
+        try {
+            Date d = f.parse(string_date);
+            milliseconds = d.getTime();
+        } catch (ParseException e) {
+            return 0L;
+        }
+        return (milliseconds);
+    }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {   }
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int index_report = 1;
-        String type_report = request.getParameter("type_report");
-        switch(index_report){
-            case(1):
-                System.out.println("XML");
-                String date1 = request.getParameter("date1");
-                String date2 = request.getParameter("date2");
-                System.out.println("date1 " + date1 + " date2 " + date2);
-                final Vector<User> users = new Vector<User>();
-                DBConnector.init();
-                final FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference ref = database.getReference("/");
-                ref.addListenerForSingleValueEvent(new ValueEventListener() {
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        users.clear();
 
-                        for (DataSnapshot userSnapshot: dataSnapshot.child("users").getChildren())
-                        {
-                            users.add(new User(userSnapshot.getKey(), (String) userSnapshot.child("email").getValue(),(String) userSnapshot.child("name").getValue(),(String) userSnapshot.child("role").getValue()
+        String absolutePath = System.getProperty("user.dir") + "\\";
+        String file_name = "";
+        DBConnector.init();
+        Collection collection = new Collection();
+        DBConnector connector = new DBConnector();
 
-                            ));
-                        }
-                        XmlCreator tempCreator = new XmlCreator("tempCreator", users, "1489795200", "1589795200");
+        String index_report_str = request.getParameter("index_report");
+        //System.out.println(index_report_str);
+        int index_report = Integer.parseInt(index_report_str);
+        String type_report = request.getParameter("report1_switch_pdf_or_xml");
+        //System.out.println(type_report);
+        switch (index_report) {
+            // REPORT TYPE 1
+            case (1):
 
+                String date1 = request.getParameter("report1_date_begin");
+                String date2 = request.getParameter("report1_date_end");
+
+                long date_1 = getLongTime(date1);
+                long date_2 = getLongTime(date2);
+
+                connector.getSignedUsersBetweenDates(collection, date_1, date_2);
+                //connector.getSignedUsersBetweenDates(collection, 0L, date_1);
+
+                synchronized (collection) {
+                    try {
+                        collection.wait();
+                    } catch (InterruptedException e) {
                     }
+                }
+                //getSignedUsersBetweenDates_08_04_2018_09_04_2018_onDate_1491906038054
+                file_name = "SignedUsersBetweenDates_" + date1 + "_" + date2 + "_onDate_" + System.currentTimeMillis();
 
-                    public void onCancelled(DatabaseError databaseError) {
-                        System.out.println("The read failed: " + databaseError.getCode());
-                    }
-                });
+                if (type_report != null) {// pdf
+
+                    // TODO: where is my pdf???
+
+                } else {                  // xml
+
+                    // этого здесь быть не должно:
+                    String object = "student";
+                    int users_num = collection.outer.size() - 1;
+                    String summary = "Number of registered students from " + date_1 + " to " + date_2 + ": " +
+                            users_num + " people";
+
+                    XmlCreator tempCreator = new XmlCreator(file_name, collection, object, summary);
+
+
+                    /*
+                    Это должно быть функцией в твоем классе
+                    public void xmlMaker (int reportVariant)
+                    {
+                        switch (index_report) {
+                        // REPORT TYPE 1
+                            case (1):
+                                String object = "student";
+                                int users_num = collection.outer.size() - 1;
+                                String summary = "Number of registered students from " + date_1 + " to " + date_2 + ": " +
+                                        users_num + " people";
+                                XmlCreator tempCreator = new XmlCreator(file_name, collection, object, summary);
+                                break;
+                            case (2):
+                            ...
+                   }
+                   */
+                }
                 break;
-            case(2):
+            case (2):
 
-                System.out.println("PDF");
+                /*System.out.println("PDF");
                 Data data = new Data();
 
                 Calendar cal = GregorianCalendar.getInstance();
@@ -77,48 +129,101 @@ public class Controller extends HttpServlet {
                 cal.set(Calendar.YEAR, 2017);
                 Timestamp tstamp2 = new Timestamp(cal.getTimeInMillis());
 
-                PdfCreator pdfReport = new PdfCreator("Test1", data,tstamp1, tstamp2);
-                pdfReport.createPDF_1();
+                PdfCreator pdfReport = new PdfCreator("Test1", data, tstamp1, tstamp2);
+                pdfReport.createPDF_1();*/
+
+                //------------------------------------------------------------------------------------------------------
+
+                //-------- для 2 отчета---------------------------------------------------------------------------------
+                /*
+                long date_1 = 0L;
+                long date_2 = 1589795200L;
+                connector.getCoursesBetweenDates(collection, date_1, date_2);
+
+                synchronized (collection)
+                {
+                    try {
+                        collection.wait();
+                    }
+                    catch (InterruptedException e) {
+                    }
+                }
+
+                String object = "student";
+                int students_num = collection.outer.size()-1;
+                String summary = "Number of registered students for the course from " + date_1 + " to " +
+                                    date_2 + ": " + students_num;
+                */
+                //------------------------------------------------------------------------------------------------------
+
+                //-------- для 3 отчета---------------------------------------------------------------------------------
+                /*
+                String type = "hi";
+                int nums = 15;
+                connector.getUsersRating(collection, type , nums);
+
+                synchronized (collection)
+                {
+                    try {
+                        collection.wait();
+                    }
+                    catch (InterruptedException e) {
+                    }
+                }
+
+                String object = "course";
+                String summary = ""; //???????????????????????????????
+                */
                 break;
-            case(3):
+            case (3):
 
                 break;
-            case(4):
+            case (4):
 
                 break;
-            case(5):
+            case (5):
 
                 break;
-            case(6):
+            case (6):
 
                 break;
-            case(7):
+            case (7):
 
                 break;
         }
-        if(type_report.equals("PDF")) {
-            // add file ti response
-            String fileName = "Test1.pdf";
-            String typeFile = "Application/x-pdf"; //Application/x-pdf, text/plain, text/html, image/jpg
-            addFileToResponce(request, response, fileName, typeFile);
-        }else{
-            // add file ti response
-            String fileName = "tempCreator.xml";
-            String typeFile = "Application/xml"; //Application/x-pdf, text/plain, text/html, image/jpg
-            addFileToResponce(request, response, fileName, typeFile);
-        }
+
+        sendResponse(request, response, absolutePath, file_name, type_report);
+
     }
 
-    private void addFileToResponce(HttpServletRequest request, HttpServletResponse response,
-                             String fileName, String typeFile) throws ServletException, IOException {
+    private void sendResponse(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            String absolutePath,
+            String file_name,
+            String type_report) throws ServletException, IOException {
+        String extension;
+        String typeFile;
+        if (type_report != null) {  // pdf
+            typeFile = "Application/x-pdf"; //Application/x-pdf, text/plain, text/html, image/jpg
+            extension = ".pdf";
+        } else {                    // xml
+            typeFile = "Application/xml"; //Application/x-pdf, text/plain, text/html, image/jpg
+            extension = ".xml";
+        }
+        addFileToResponse(request, response, absolutePath, file_name + extension, typeFile);
+    }
 
-        File my_file = new File("D:\\" + fileName);
+    private void addFileToResponse(HttpServletRequest request, HttpServletResponse response, String absolutePath,
+                                   String fileName, String typeFile) throws ServletException, IOException {
+
+        File my_file = new File(absolutePath + fileName);
         // Make sure to show the download dialog
-        response.setHeader("Content-disposition","attachment; filename=" + fileName);
-        response.setHeader("Content-Type",typeFile + ";charset=UTF-8");
+        response.setHeader("Content-disposition", "attachment; filename=" + fileName);
+        response.setHeader("Content-Type", typeFile + ";charset=UTF-8");
         response.setHeader("Content-Length", String.valueOf(my_file.length()));
 
-        Path p = Paths.get("D:\\" + fileName);
+        Path p = Paths.get(absolutePath + fileName);
         response.getOutputStream().write(Files.readAllBytes(p));
     }
 }

@@ -5,6 +5,7 @@ import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseCredentials;
 import com.google.firebase.database.*;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -12,8 +13,8 @@ import java.util.*;
 public class DBConnector {
 
     public synchronized static void init() throws FileNotFoundException {
-        FileInputStream serviceAccount = new FileInputStream("C:\\Projects\\arcadia_test_projects\\lesson2\\coopcopy-5dc9f-firebase-adminsdk-zgprh-9bab625579.json");
-
+        System.out.println(System.getProperty("user.dir"));
+        FileInputStream serviceAccount = new FileInputStream(System.getProperty("user.dir")+ "\\coopcopy-5dc9f-firebase-adminsdk-zgprh-9bab625579.json");
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredential(FirebaseCredentials.fromCertificate(serviceAccount))
                 .setDatabaseUrl("https://coopcopy-5dc9f.firebaseio.com/")
@@ -117,7 +118,6 @@ public class DBConnector {
             }
         });
     }
-
     public void getUsersRating(final Collection collection, String type, int howMuch) {
         ArrayList<User> allUsers = new ArrayList<User>();
         ArrayList<User> result = new ArrayList<User>();
@@ -197,3 +197,6 @@ public class DBConnector {
 
     }
 }
+
+
+
