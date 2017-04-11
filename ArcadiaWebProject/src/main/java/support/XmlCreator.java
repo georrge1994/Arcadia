@@ -17,19 +17,21 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Vector;
 
-public class XmlCreator {
+public class XmlCreator implements Constants{
     private  final  String  FILE_data;
     Vector<User> users;
-    String date1, date2;
+    String summary;
+    String object;
+    Collection collection;
 
-    public XmlCreator(String file_name, Vector<User> users, String date1, String date2){
-        //информации по датам пока нет
-        this.date1= date1;
-        this.date2 = date2;
-        this.users = users;
+    public XmlCreator(String file_name, Collection collection,  String object, String summary){
+        this.collection = collection;
+        this.summary = summary;
+        this.object = object;
+
         FILE_data = file_name + ".xml";
         try {
-            writeDataXML_type1();
+            writeDataXML();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (TransformerException e) {
@@ -37,7 +39,7 @@ public class XmlCreator {
         }
     }
 
-    public void writeDataXML_type1() throws TransformerFactoryConfigurationError,
+    public void writeDataXML() throws TransformerFactoryConfigurationError,
             FileNotFoundException,
             TransformerException
     {
@@ -49,40 +51,69 @@ public class XmlCreator {
             db  = dbf.newDocumentBuilder();
             doc = db.newDocument();
 
-            Element e_root = doc.createElement("report");
+            Element e_root = doc.createElement("report"); //основной объект
             e_root.setAttribute("lang", "en");
-            Element e_users = doc.createElement("users");
+
+            //-----------------модель-----------------
+            // 0 строка - названия столбцов
+            // <main>
+            //      <obj[1] - строка>
+            //              <info/> - название столбца
+            //              <info/> - название столбца
+            //              <info/> - название столбца
+            //      </<obj[1] - строка>
+            //             :
+            //             :
+            //             :
+            //             :
+            //      <obj[last]> - строка>
+            //              <info/> - название столбца
+            //              <info/> - название столбца
+            //              <info/> - название столбца
+            //      </<obj[last]> - строка>
+            // </main>
+            // <summary>
+            //      <summary_info/>
+            // </summary>
+            //--------------------------------------------
+
+            // 2 основных тега
+            Element e_main = doc.createElement("main");
             Element e_summary = doc.createElement("summary");
-            e_summary.setTextContent(String.format("Number of registered users from %s to %s: %d people",
-                    this.date1, this.date2, users.size()));
-            e_root.appendChild(e_users);
+
+            System.out.println("Collection cheсk ... \n ... collection size is " + this.collection.outer.size());
+
+            //-----заполнение--------------------------------------------------------------
+            for(int i = 1; i < this.collection.outer.size(); i++){
+                //создание элемента
+                Element e_object = doc.createElement(this.object);
+                //по столбцам
+                for(int j = 0; j < this.collection.outer.get(0).size(); j++){
+                    String s = this.collection.outer.get(0).get(j);
+                    s = s.replace(" ", "_");
+                    Element e_info = doc.createElement(s); //теги из 0 строки
+                    e_info.setTextContent(this.collection.outer.get(i).get(j)); //содержимое из ячейки j в строке i > 0
+                    //добавление информации в объект
+                    e_object.appendChild(e_info);
+                }
+                //добавление объекта в main
+                e_main.appendChild(e_object);
+            }
+
+            e_summary.setTextContent(String.format(summary));
+
+            //----------------------------------------------------------------------------
+
+            e_root.appendChild(e_main);
             e_root.appendChild(e_summary);
             doc.appendChild(e_root);
 
-            if(users.size() == 0)
-                return;
-
-            //перечисление всех пользователей за период
-            for (int i=0; i < users.size(); i++){
-                Element e_user = doc.createElement("user");
-                Element e_user_number = doc.createElement("userNumber");
-                Element e_user_name = doc.createElement("userName");
-                Element e_user_date = doc.createElement("userRegistrationDte");
-
-                e_user_number.setTextContent(users.get(i).getKey());
-                e_user_name.setTextContent(users.get(i).getName());
-                e_user_date.setTextContent(users.get(i).getRegistrationDate());
-
-                e_user.appendChild(e_user_number);
-                e_user.appendChild(e_user_name);
-                e_user.appendChild(e_user_date);
-                e_users.appendChild(e_user);
-            }
         } catch (ParserConfigurationException e) {
         } finally {
             // Сохраняем Document в XML-файл
+            String savePath = System.getProperty("user.dir") + "\\" + FILE_data;
             if (doc != null)
-                writeDocument(doc, "D:/" + FILE_data);
+                writeDocument(doc, System.getProperty("user.dir") + "\\" + FILE_data);
         }
     }
 
@@ -102,6 +133,7 @@ public class XmlCreator {
 
             StreamResult result = new StreamResult(fos);
             trf.transform(src, result);
+            fos.close();
         } catch (TransformerException e) {
             e.printStackTrace(System.out);
         } catch (IOException e) {
@@ -109,4 +141,3 @@ public class XmlCreator {
         }
     }
 }
-

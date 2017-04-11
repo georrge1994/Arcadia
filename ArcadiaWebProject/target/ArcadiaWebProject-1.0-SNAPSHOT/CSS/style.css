@@ -1,55 +1,209 @@
-body
-{
+@charset "utf-8";
+/* CSS Document */
 
-    background-color:#FFFFFF;
-
+body {
+    font-family: 'Roboto', sans-serif;
 }
 
-table {
-    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-    font-size: 14px;
-    border-collapse: collapse;
-    /*text-align: left;*/
+h3{
+    text-align: center;
 }
-th, td:first-child {
-    background: #AFCDE7;
+
+h5{
+    padding-bottom: 5px;
+    padding-top: 5px;
+    font-size: 80px;
+}
+
+.right{
+    text-align: right;
+}
+
+/* Style the tab */
+div.tab{
+    overflow: hidden;
+    background-color:#57a3e5;
+    padding-bottom: 20px;
+}
+
+/* Style the tab content */
+.tabcontent{
+    display: none;
+}
+
+.design-block{
+    width: 25%;
+    height:150%;
+    float: left;
+    padding-left: 3%;
+    padding-right: 5%;
+    background-color:#337AB7;
     color: white;
-    padding: 6px 10px;
 }
-th, td {
-    border-style: solid;
-    border-width: 0 1px 1px 0;
-    border-color: white;
-}
-td {
-    background: #D8E6F3;
-}
-th:first-child, td:first-child {
-    text-align: center;}
-.sendsubmit {
 
-    font-weight: 700;
+
+.view-block{
+    float: right;
+    width: 75%;
+    padding-right: 5%;
+}
+
+.center{
+    text-align: center;
+}
+
+div.tabHeadtext{
+    background-color: #57a3e5;
 
     color: white;
-    text-decoration: none;
-    padding: .8em 1em calc(.8em + 3px);
-    border-radius: 3px;
-    background: rgb(64,199,129);
-    box-shadow: 0 -3px rgb(53,167,110) inset;
-    transition: 0.2s;
-
-}
-.sendsubmit:hover { background: rgb(53, 167, 110); }
-.sendsubmit:active {
-    background: rgb(33,147,90);
-    box-shadow: 0 3px rgb(33,147,90) inset;
-
+    height: 70px;
+    font-size: 36px;
+    text-align: left;
+    padding-top: 15px;
+    padding-bottom: 70px;
+    padding-left: 60px;
 }
 
-input[disabled]{
-    background-color: LightGray;
+.rightpic {
+    float: right; /* Выравнивание по правому краю */
+    margin-top: 0px;
+    margin-right: 40px;
+    margin-left: 5px;
+    /* Отступы вокруг фотографии */
 }
 
-select[disabled]{
-    background-color: LightGray;
+.black_betty{
+    color: black;
+}
+
+
+/*--------------------------SEND BTN-------------------------*/
+
+.button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px;
+
+    width: 100px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    margin-top:30px;
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button:hover span {
+    padding-right: 25px;
+}
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+/*--------------------SWITCH-------------------------------*/
+
+.flipswitch {
+    position: relative;
+    width: 86px;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select: none;
+}
+
+.flipswitch input[type=checkbox] {
+    display: none;
+}
+
+.flipswitch-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid #999999;
+    border-radius: 0px;
+}
+
+.flipswitch-inner {
+    width: 200%;
+    margin-left: -100%;
+    -webkit-transition: margin 0.3s ease-in 0s;
+    -moz-transition: margin 0.3s ease-in 0s;
+    -ms-transition: margin 0.3s ease-in 0s;
+    -o-transition: margin 0.3s ease-in 0s;
+    transition: margin 0.3s ease-in 0s;
+}
+
+.flipswitch-inner:before, .flipswitch-inner:after {
+    float: left;
+    width: 50%;
+    height: 23px;
+    padding: 0;
+    line-height: 23px;
+    font-size: 16px;
+    color: white;
+
+    font-weight: normal;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.flipswitch-inner:before {
+    content: "PDF";
+    padding-left: 12px;
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+.flipswitch-inner:after {
+    content: "XML";
+    padding-right: 12px;
+    background-color: #FFFFFF;
+    color: #000000;
+    text-align: right;
+}
+
+.flipswitch-switch {
+    width: 31px;
+    margin: -4px;
+    background: #FFFFFF;
+    border: 1px solid #999999;
+    border-radius: 0px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 61px;
+    -webkit-transition: all 0.3s ease-in 0s;
+    -moz-transition: all 0.3s ease-in 0s;
+    -ms-transition: all 0.3s ease-in 0s;
+    -o-transition: all 0.3s ease-in 0s;
+    transition: all 0.3s ease-in 0s;
+}
+
+.flipswitch-cb:checked + .flipswitch-label .flipswitch-inner {
+    margin-left: 0;
+}
+
+.flipswitch-cb:checked + .flipswitch-label .flipswitch-switch {
+    right: 0;
 }
