@@ -1,33 +1,33 @@
 <html>
-    <link href="CSS/style.css" rel="stylesheet" type="text/css">
-    <link rel="shortcut icon" href="favicons.png">
-    <head>
-        <title>Report Designer</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="CSS/style.css" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" href="favicons.png">
+<head>
+    <title>Report Designer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    </head>
-    <body>
-        <div class="tabHeadtext"> Report Designer
-            <div class="rightpic">
-                <img src="img/logo.png" width="196" height="53" alt=""/>
-            </div>
+</head>
+<body>
+<div class="tabHeadtext"> Report Designer
+    <div class="rightpic">
+        <img src="img/logo.png" width="196" height="53" alt=""/>
+    </div>
+</div>
+<div class="tab">
+    <div class="container">
+        <div class="btn-group btn-group-justified">
+            <a href="#" class="btn btn-primary tablinks" onclick="changeTab(event, 'R1')" id="defaultOpen">Report1</a>
+            <a href="#" class="btn btn-primary tablinks" onclick="changeTab(event, 'R2')">Report2</a>
+            <a href="#" class="btn btn-primary tablinks" onclick="changeTab(event, 'R3')">Report3</a>
+            <a href="#" class="btn btn-primary tablinks" onclick="changeTab(event, 'R4')">Report4</a>
+            <a href="#" class="btn btn-primary tablinks" onclick="changeTab(event, 'R5')">Report5</a>
+            <a href="#" class="btn btn-primary tablinks" onclick="changeTab(event, 'R6')">Report6</a>
+            <a href="#" class="btn btn-primary tablinks" onclick="changeTab(event, 'R7')">Report7</a>
         </div>
-        <div class="tab">
-            <div class="container">
-                <div class="btn-group btn-group-justified">
-                    <a href="#" class="btn btn-primary tablinks" onclick="changeTab(event, 'R1')" id="defaultOpen" >Report1</a>
-                    <a href="#" class="btn btn-primary tablinks"onclick="changeTab(event, 'R2')" >Report2</a>
-                    <a href="#" class="btn btn-primary tablinks"onclick="changeTab(event, 'R3')" >Report3</a>
-                    <a href="#" class="btn btn-primary tablinks"onclick="changeTab(event, 'R4')">Report4</a>
-                    <a href="#" class="btn btn-primary tablinks"onclick="changeTab(event, 'R5')">Report5</a>
-                    <a href="#" class="btn btn-primary tablinks"onclick="changeTab(event, 'R6')">Report6</a>
-                    <a href="#" class="btn btn-primary tablinks"onclick="changeTab(event, 'R7')">Report7</a>
-                </div>
-            </div>
-        </div>
-        <div id="R1" class="tabcontent">
+    </div>
+</div>
+<div id="R1" class="tabcontent">
             <span class="design-block">
                 <div class="center">
                     <h3>Select the report components:</h3>
@@ -39,7 +39,7 @@
                         <h5>Date1</h5>
                     </div>
                     <div class="black_betty">
-                        <input type="date" name="report1_date_begin" >
+                        <input type="date" name="report1_date_begin">
                     </div>
                     <div>
                         <h5>Date2</h5>
@@ -50,7 +50,7 @@
                     <div>
                         <h5>What kind of file should be formed?</h5>
                     </div>
-                    <div class="flipswitch" >
+                    <div class="flipswitch">
                         <input type="checkbox" name="report1_switch_pdf_or_xml" class="flipswitch-cb" id="fs1" checked>
                         <label class="flipswitch-label" for="fs1">
                             <div class="flipswitch-inner"></div>
@@ -65,25 +65,25 @@
                     </div>
                 </form>
             </span>
-            <span class="view-block"  >
+    <span class="view-block">
               <h3> Example of report </h3>
-              <div class="center" >
+              <div class="center">
                 <p> <img src="img/report1_pdf.png" width="554" height="788" alt=""/> </p>
               </div>
-            </span> </div>
-        <div id="R2" class="tabcontent">
+            </span></div>
+<div id="R2" class="tabcontent">
             <span class="design-block">
               <div class="center">
                 <h3>Select the report components:</h3>
               </div>
               <p>Number of students who have registered for the selected period for the course:</p>
               <p> Date Range:</p>
-              <form name="report2_form">
+              <form name="report2_form" method="get" action="http://localhost:8080/controller">
                 <div>
                   <h5>Date1</h5>
                 </div>
                 <div class="black_betty">
-                  <input type="date" name="report2_date_begin" >
+                  <input type="date" name="report2_date_begin">
                 </div>
                 <div>
                   <h5>Date2</h5>
@@ -112,30 +112,32 @@
                   <div class="flipswitch-switch"></div>
                   </label>
                 </div>
+                  <input type="text" name="index_report" style="display: none;" value="2">
                 <div class="center">
-                  <button class="button" style="vertical-align:middle" name="report2_button_send"> <span>SEND</span> </button>
+                  <button class="button" style="vertical-align:middle"
+                          name="report2_button_send"> <span>SEND</span> </button>
                 </div>
               </form>
           </span>
-            <span class="view-block"  >
+    <span class="view-block">
               <h3> Example of report </h3>
-              <div class="center" >
+              <div class="center">
                 <p> <img src="img/report1_pdf.png" width="554" height="788" alt=""/> </p>
               </div>
-            </span> </div>
-        <div id="R3" class="tabcontent">
+            </span></div>
+<div id="R3" class="tabcontent">
             <span class="design-block">
               <div class="center">
                 <h3>Select the report components:</h3>
               </div>
               <p>Students Rating:</p>
               <p> Date Range:</p>
-              <form name="report3_form">
+              <form name="report3_form" method="get" action="http://localhost:8080/controller">
                 <div>
                   <h5>Date1</h5>
                 </div>
                 <div class="black_betty">
-                  <input type="date" name="report3_date_begin" >
+                  <input type="date" name="report3_date_begin">
                 </div>
                 <div>
                   <h5>Date2</h5>
@@ -175,25 +177,27 @@
                   <div class="flipswitch-switch"></div>
                   </label>
                 </div>
+                  <input type="text" name="index_report" style="display: none;" value="3">
                 <div class="center">
-                  <button class="button" style="vertical-align:middle" name="report3_button_send"> <span>SEND</span> </button>
+                  <button class="button" style="vertical-align:middle"
+                          name="report3_button_send"> <span>SEND</span> </button>
                 </div>
               </form>
             </span>
-            <span class="view-block"  >
+    <span class="view-block">
               <h3> Example of report </h3>
-              <div class="center" >
+              <div class="center">
                 <p> <img src="img/report1_pdf.png" width="554" height="788" alt=""/> </p>
               </div>
             </span>
-        </div>
-        <div id="R4" class="tabcontent">
+</div>
+<div id="R4" class="tabcontent">
             <span class="design-block">
               <div class="center">
                 <h3>Select the report components:</h3>
               </div>
               <p>Rating of groups:</p>
-              <form name="report4_form">
+              <form name="report4_form" method="get" action="http://localhost:8080/controller">
                 <div>
                   <h5>Course:</h5>
                 </div>
@@ -210,7 +214,7 @@
                   <h5>Date1</h5>
                 </div>
                 <div class="black_betty">
-                  <input type="date" name="report4_date_begin" >
+                  <input type="date" name="report4_date_begin">
                 </div>
                 <div>
                   <h5>Date2</h5>
@@ -239,25 +243,27 @@
                   <div class="flipswitch-switch"></div>
                   </label>
                 </div>
+                  <input type="text" name="index_report" style="display: none;" value="4">
                 <div class="center">
-                  <button class="button" style="vertical-align:middle" name="report4_button_send"> <span>SEND</span> </button>
+                  <button class="button" style="vertical-align:middle"
+                          name="report4_button_send"> <span>SEND</span> </button>
                 </div>
               </form>
           </span>
-            <span class="view-block"  >
+    <span class="view-block">
               <h3> Example of report </h3>
-              <div class="center" >
+              <div class="center">
                 <p> <img src="img/report1_pdf.png" width="554" height="788" alt=""/> </p>
               </div>
             </span>
-        </div>
-        <div id="R5" class="tabcontent">
+</div>
+<div id="R5" class="tabcontent">
             <span class="design-block">
               <div class="center">
                 <h3>Select the report components:</h3>
               </div>
               <p>Number of tests in the course:</p>
-              <form name="report5_form">
+              <form name="report5_form" method="get" action="http://localhost:8080/controller">
                 <div>
                   <h5>Course:</h5>
                 </div>
@@ -279,19 +285,21 @@
                       <div class="flipswitch-switch"></div>
                   </label>
                 </div>
+                  <input type="text" name="index_report" style="display: none;" value="5">
                 <div class="center">
-                  <button class="button" style="vertical-align:middle" name="report5_button_send"> <span>SEND</span> </button>
+                  <button class="button" style="vertical-align:middle"
+                          name="report5_button_send"> <span>SEND</span> </button>
                 </div>
               </form>
             </span>
-            <span class="view-block"  >
+    <span class="view-block">
               <h3> Example of report </h3>
-              <div class="center" >
+              <div class="center">
                 <p> <img src="img/report1_pdf.png" width="554" height="788" alt=""/> </p>
               </div>
             </span>
-        </div>
-        <div id="R6" class="tabcontent">
+</div>
+<div id="R6" class="tabcontent">
             <span class="design-block">
                 <div class="center">
                     <h3>Select the report components:</h3>
@@ -338,7 +346,7 @@
                       <h5>Date1</h5>
                     </div>
                     <div class="black_betty">
-                      <input type="date" name="report6_date_begin" >
+                      <input type="date" name="report6_date_begin">
                     </div>
                     <div>
                       <h5>Date2</h5>
@@ -372,14 +380,14 @@
                     </div>
                 </form>
             </span>
-            <span class="view-block"  >
+    <span class="view-block">
                 <h3> Example of report </h3>
-                <div class="center" >
+                <div class="center">
                     <p> <img src="img/report1_pdf.png" width="554" height="788" alt=""/> </p>
                 </div>
             </span>
-        </div>
-        <div id="R7" class="tabcontent">
+</div>
+<div id="R7" class="tabcontent">
             <span class="design-block">
                 <div class="center">
                     <h3>Select the report components:</h3>
@@ -415,7 +423,7 @@
                       <h5>Date1</h5>
                     </div>
                     <div class="black_betty">
-                      <input type="date" name="report7_date_begin" >
+                      <input type="date" name="report7_date_begin">
                     </div>
                     <div>
                       <h5>Date2</h5>
@@ -460,14 +468,14 @@
                     </div>
                 </form>
             </span>
-            <span class="view-block"  >
+    <span class="view-block">
                 <h3> Example of report </h3>
-                <div class="center" >
+                <div class="center">
                     <p> <img src="img/report1_pdf.png" width="554" height="788" alt=""/> </p>
                 </div>
             </span>
-        </div>
-    </body>
+</div>
+</body>
 </html>
 
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

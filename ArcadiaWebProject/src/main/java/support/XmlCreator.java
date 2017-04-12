@@ -15,21 +15,53 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Vector;
 
 public class XmlCreator implements Constants{
-    private  final  String  FILE_data;
-    Vector<User> users;
-    String summary;
-    String object;
+    String  FILE_data;
     Collection collection;
+    int index_report;
+    String object;
+    String summary;
 
-    public XmlCreator(String file_name, Collection collection,  String object, String summary){
+    public XmlCreator(String file_name, Collection collection, int index_report){
         this.collection = collection;
-        this.summary = summary;
-        this.object = object;
-
+        this.index_report = index_report;
         FILE_data = file_name + ".xml";
+
+        makeReport();
+    }
+
+    public void makeReport(){
+
+        switch(this.index_report){
+            case(1):
+                this.object = "student";
+                int users_num = this.collection.outer.size() - 1;
+                this.summary = "Number of registered students: " +
+                        users_num + " people";
+                break;
+            case(2):
+                this.object = "course";
+                this.summary = "";
+                break;
+            case(3):
+                this.object = "student";
+                this.summary = "";
+                break;
+            case(4):
+                this.object = "group";
+                this.summary ="";
+                break;
+            case(5):
+                this.object = "course";
+                this.summary ="";
+                break;
+            case(6):
+                break;
+            case(7):
+                break;
+        }
+
         try {
             writeDataXML();
         } catch (FileNotFoundException e) {
@@ -81,10 +113,11 @@ public class XmlCreator implements Constants{
             Element e_main = doc.createElement("main");
             Element e_summary = doc.createElement("summary");
 
-            System.out.println("Collection cheсk ... \n ... collection size is " + this.collection.outer.size());
+            //System.out.println("Collection cheсk ... \n ... collection size is " + this.collection.outer.size());
+
 
             //-----заполнение--------------------------------------------------------------
-            for(int i = 0; i < this.collection.outer.size(); i++){
+            for(int i = 1; i < this.collection.outer.size(); i++){
                 //создание элемента
                 Element e_object = doc.createElement(this.object);
                 //по столбцам
@@ -111,8 +144,9 @@ public class XmlCreator implements Constants{
         } catch (ParserConfigurationException e) {
         } finally {
             // Сохраняем Document в XML-файл
+            String savePath = System.getProperty("user.dir") + "\\" + FILE_data;
             if (doc != null)
-                writeDocument(doc, PATH + FILE_data);
+                writeDocument(doc, System.getProperty("user.dir") + "\\" + FILE_data);
         }
     }
 

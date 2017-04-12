@@ -5,7 +5,6 @@ import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseCredentials;
 import com.google.firebase.database.*;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -13,7 +12,8 @@ import java.util.*;
 public class DBConnector {
 
     public synchronized static void init() throws FileNotFoundException {
-        FileInputStream serviceAccount = new FileInputStream("C:\\IntelliJIDEA2016.3.5(64)Project\\Arcadia\\ArcadiaWebProject\\resources\\coopcopy-5dc9f-firebase-adminsdk-zgprh-9bab625579.json");
+        FileInputStream serviceAccount = new FileInputStream("C:\\Projects\\arcadia_test_projects\\lesson2\\coopcopy-5dc9f-firebase-adminsdk-zgprh-9bab625579.json");
+
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredential(FirebaseCredentials.fromCertificate(serviceAccount))
                 .setDatabaseUrl("https://coopcopy-5dc9f.firebaseio.com/")
@@ -96,7 +96,7 @@ public class DBConnector {
 
                 synchronized (collection) {
                     ArrayList<String> names = new ArrayList<String>();
-                    names.add("Course");
+                    names.add("Course Name");
                     names.add("Signed Users");
                     names.add("Passed Users");
                     collection.addArrayList(names);
@@ -178,6 +178,80 @@ public class DBConnector {
         });
     }
 
+    public void getGroupsRating(final Collection collection)
+    {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("/userGroups");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                synchronized (collection) {
+                    ArrayList<String> names = new ArrayList<String>();
+                    names.add("Group Name");
+                    names.add("Rating");
+                    collection.addArrayList(names);
+                    for (DataSnapshot group : dataSnapshot.getChildren()) {
+                        Long rating = 0L;
+                        for (DataSnapshot learner: group.getChildren())
+                        {
+                            if (learner.child("rating").exists())
+                                rating += (Long) learner.child("rating").getValue();
+                        }
+                        ArrayList<String> newGroup = new ArrayList<String>();
+                        newGroup.add(group.getKey());
+                        newGroup.add(rating.toString());
+                        collection.addArrayList(newGroup);
+                    }
+                    collection.notifyAll();
+                }
+            }
+
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+    }
+
+
+    public void getCourses(final Collection collection)
+    {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("/courses");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                synchronized (collection) {
+                    ArrayList<String> names = new ArrayList<String>();
+
+                    names.add("Name");
+                    names.add("Date Created");
+                    names.add("Date Start");
+                    names.add("Date End");
+                    names.add("Difficulty");
+                    names.add("Status");
+                    names.add("Tests Number");
+
+                    collection.addArrayList(names);
+                    for (DataSnapshot course: dataSnapshot.getChildren()) {
+                        ArrayList<String> newGroup = new ArrayList<String>();
+                        newGroup.add((String) course.child("name").getValue());
+                        newGroup.add( course.child("dateCreated").getValue().toString());
+                        newGroup.add( course.child("dateStart").getValue().toString());
+                        newGroup.add( course.child("dateEnd").getValue().toString());
+                        newGroup.add( course.child("difficulty").getValue().toString());
+                        newGroup.add((String) course.child("status").getValue());
+
+                        newGroup.add(String.valueOf(course.child("tests").getChildrenCount()));
+
+                        collection.addArrayList(newGroup);
+                    }
+                    collection.notifyAll();
+                }
+            }
+
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+    }
     class Pair {
         Long left;
         Long right;
