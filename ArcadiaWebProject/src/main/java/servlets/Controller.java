@@ -4,6 +4,7 @@ import support.Collection;
 import support.Constants;
 import support.DBConnector;
 import support.XmlCreator;
+import support.pdf.PdfCreator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -50,11 +51,14 @@ public class Controller extends HttpServlet implements Constants {
         String index_report_str = request.getParameter("index_report");
         //System.out.println(index_report_str);
         int index_report = Integer.parseInt(index_report_str);
-        String type_report = request.getParameter("report1_switch_pdf_or_xml");
+        //String type_report = request.getParameter("report1_switch_pdf_or_xml");
+        String type_report = null;
         //System.out.println(type_report);
         switch (index_report) {
             // REPORT TYPE 1
             case (1):
+
+                type_report = request.getParameter("report1_switch_pdf_or_xml");
 
                 String date1 = request.getParameter("report1_date_begin");
                 String date2 = request.getParameter("report1_date_end");
@@ -74,13 +78,16 @@ public class Controller extends HttpServlet implements Constants {
 
                 if (type_report != null) {// pdf
 
-                    // TODO: where is my pdf???
+                    PdfCreator pdfCreator = new PdfCreator(file_name, collection, 1);
+                    pdfCreator.createPDF();
 
                 } else {                  // xml
                     XmlCreator tempCreator = new XmlCreator(file_name, collection, 1);
                 }
                 break;
             case (2):
+
+                type_report = request.getParameter("report2_switch_pdf_or_xml");
 
                 String date2_1 = request.getParameter("report2_date_begin");
                 String date2_2 = request.getParameter("report2_date_end");
@@ -100,7 +107,8 @@ public class Controller extends HttpServlet implements Constants {
 
                 if (type_report != null) {// pdf
 
-                    // TODO: where is my pdf???
+                    PdfCreator pdfCreator = new PdfCreator(file_name, collection, 2);
+                    pdfCreator.createPDF();
 
                 } else {                  // xml
                     XmlCreator tempCreator = new XmlCreator(file_name, collection, 2);
@@ -108,6 +116,8 @@ public class Controller extends HttpServlet implements Constants {
 
                 break;
             case (3):
+                type_report = request.getParameter("report3_switch_pdf_or_xml");
+
                 String date3_1 = request.getParameter("report3_date_begin");
                 String date3_2 = request.getParameter("report3_date_end");
 
@@ -127,7 +137,8 @@ public class Controller extends HttpServlet implements Constants {
 
                 if (type_report != null) {// pdf
 
-                    // TODO: where is my pdf???
+                    PdfCreator pdfCreator = new PdfCreator(file_name, collection, 3);
+                    pdfCreator.createPDF();
 
                 } else {                  // xml
                     XmlCreator tempCreator = new XmlCreator(file_name, collection, 3);
@@ -135,6 +146,8 @@ public class Controller extends HttpServlet implements Constants {
 
                 break;
             case (4):
+                type_report = request.getParameter("report4_switch_pdf_or_xml");
+
                 String date4_1 = request.getParameter("report4_date_begin");
                 String date4_2 = request.getParameter("report4_date_end");
 
@@ -153,13 +166,16 @@ public class Controller extends HttpServlet implements Constants {
 
                 if (type_report != null) {// pdf
 
-                    // TODO: where is my pdf???
+                    PdfCreator pdfCreator = new PdfCreator(file_name, collection, 4);
+                    pdfCreator.createPDF();
 
                 } else {                  // xml
                     XmlCreator tempCreator = new XmlCreator(file_name, collection, 4);
                 }
                 break;
             case (5):
+
+                type_report = request.getParameter("report5_switch_pdf_or_xml");
                 //String date5_1 = request.getParameter("report5_date_begin");
                 //String date5_2 = request.getParameter("report5_date_end");
 
@@ -182,7 +198,8 @@ public class Controller extends HttpServlet implements Constants {
 
                 if (type_report != null) {// pdf
 
-                    // TODO: where is my pdf???
+                    PdfCreator pdfCreator = new PdfCreator(file_name, collection, 5);
+                    pdfCreator.createPDF();
 
                 } else {                  // xml
                     XmlCreator tempCreator = new XmlCreator(file_name, collection, 5);
