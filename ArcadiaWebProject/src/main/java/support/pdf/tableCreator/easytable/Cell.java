@@ -49,6 +49,17 @@ public class Cell {
                 .setBorderWidthTop(borderWith);
     }
 
+    public Cell withHorizontalBorders () {
+        int borderWith = 1;
+        return withHorizontalBorders(borderWith);
+    }
+
+    public Cell withHorizontalBorders (int borderWith) {
+        return this
+                .setBorderWidthBottom(borderWith)
+                .setBorderWidthTop(borderWith);
+    }
+
     public Row getRow() {
         return row;
     }

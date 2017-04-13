@@ -19,12 +19,14 @@ public class TableDrawer {
         tableStartY = startY - table.getFontHeight();
     }
 
-    public void draw() throws IOException {
-        drawBackgroundAndText();
+    public float draw() throws IOException {
+        float ty = drawBackgroundAndText();
         drawBorders();
+
+        return ty;
     }
 
-    private void drawBackgroundAndText() throws IOException {
+    private float drawBackgroundAndText() throws IOException {
         float startX;
         float startY = tableStartY;
 
@@ -51,6 +53,7 @@ public class TableDrawer {
                 columnCounter++;
             }
         }
+        return startY;
     }
 
     private void drawBorders() throws IOException {
