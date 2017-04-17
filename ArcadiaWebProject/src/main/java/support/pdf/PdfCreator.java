@@ -102,7 +102,7 @@ public class PdfCreator {
                 headers.add("Courses between dates " + header[1] + " and " +  header[2]);
                 break;
             case(3):
-                headers.add("Users rating" );
+                headers.add("Users rating");
                 break;
             case(4):
                 headers.add("Groups rating");
@@ -119,7 +119,18 @@ public class PdfCreator {
     }
 
     public PDPage addNewPage(PDDocument document) throws IOException {
-        PDPage page = new PDPage();
+
+        PDPage page;
+
+        switch(reportType) {
+            case (5):
+                // landscape
+                page = new PDPage(new PDRectangle(PDRectangle.A4.getHeight(), PDRectangle.A4.getWidth()));
+                break;
+            default:
+                // portrait
+                page = new PDPage(new PDRectangle(PDRectangle.A4.getWidth(),PDRectangle.A4.getHeight()));
+        }
         document.addPage(page);
         pageCounter++;
         return page;
@@ -142,7 +153,7 @@ public class PdfCreator {
             int length = ((int)textCursor.getWidth()) / firstRow.size() ;
 
             for (String header : firstRow) {
-                tableBuilder.addColumnOfWidth(length + header.length());
+                tableBuilder.addColumnOfWidth(length /*+ header.length()*/);
             }
 
             tableBuilder.setFontSize(fontSize).setFont(font);
@@ -160,7 +171,6 @@ public class PdfCreator {
                 tableBuilder.addRow(rowBuilder.setBackgroundColor(i++ % 2 == 0 ? new Color(215, 238, 245) : Color.WHITE).build());
             }
 
-            // Draw! --------------------------------------------
             float ty = (new TableDrawer(contentStream, tableBuilder.build(), textCursor.getCurentX(), textCursor.getCurentY())).draw();
             textCursor.setCurentY(ty-20);
         } finally {
@@ -290,7 +300,7 @@ public class PdfCreator {
             pdImage.setHeight(30);
 
             //Drawing the image in the PDF document
-            contentStream.drawImage(pdImage, textCursor.getCurentX() + 420 , textCursor.getCurentY() + 20);
+            contentStream.drawImage(pdImage, page.getMediaBox().getUpperRightX() - 110 , page.getMediaBox().getUpperRightY() - 40);
         } finally {
             //Closing the content stream
             if (contentStream != null)
