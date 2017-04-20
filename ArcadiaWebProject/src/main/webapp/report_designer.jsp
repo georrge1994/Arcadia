@@ -34,7 +34,7 @@
                 </div>
                 <p>Number of students who have registered for a period of time:</p>
                 <p> Date Range:</p>
-                <form name="report1_form" method="get" action="http://localhost:8080/controller">
+                <form name="report1_form" method="get" action="http://localhost:8080/report_1">
                     <div>
                         <h5>Date1</h5>
                     </div>
@@ -78,7 +78,7 @@
               </div>
               <p>Number of students who have registered for the selected period for the course:</p>
               <p> Date Range:</p>
-              <form name="report2_form" method="get" action="http://localhost:8080/controller">
+              <form name="report2_form" method="get" action="http://localhost:8080/report_2">
                 <div>
                   <h5>Date1</h5>
                 </div>
@@ -132,7 +132,7 @@
               </div>
               <p>Students Rating:</p>
               <p> Date Range:</p>
-              <form name="report3_form" method="get" action="http://localhost:8080/controller">
+              <form name="report3_form" method="get" action="http://localhost:8080/report_3">
                 <div>
                   <h5>Date1</h5>
                 </div>
@@ -197,7 +197,7 @@
                 <h3>Select the report components:</h3>
               </div>
               <p>Rating of groups:</p>
-              <form name="report4_form" method="get" action="http://localhost:8080/controller">
+              <form name="report4_form" method="get" action="http://localhost:8080/report_4">
                 <div>
                   <h5>Course:</h5>
                 </div>
@@ -263,7 +263,7 @@
                 <h3>Select the report components:</h3>
               </div>
               <p>Number of tests in the course:</p>
-              <form name="report5_form" method="get" action="http://localhost:8080/controller">
+              <form name="report5_form" method="get" action="http://localhost:8080/report_5">
                 <div>
                   <h5>Course:</h5>
                 </div>
