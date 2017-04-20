@@ -32,11 +32,11 @@ public class TextCursor {
         this.marginX = marginX;
         this.marginY = marginY;
         this.startX = mediabox.getLowerLeftX();
-        this.startY = mediabox.getUpperRightY();
+        this.startY = mediabox.getUpperRightY() ;
         this.curentX = startX + marginX;
         this.curentY = startY - marginY;
         this.heightCounter = curentY;
-        this.width = mediabox.getWidth() - 2*marginX;
+        this.width = mediabox.getWidth() - 2 * marginX;
         this.alignment = Align.LEFT;
     }
 
