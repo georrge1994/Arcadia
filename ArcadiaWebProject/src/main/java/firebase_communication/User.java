@@ -1,5 +1,6 @@
 package firebase_communication;
 
+// describes user in DB
 public class User implements Comparable<User>{
     String email = "";
     String name = "";
