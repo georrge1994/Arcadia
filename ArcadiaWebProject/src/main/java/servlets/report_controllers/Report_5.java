@@ -43,7 +43,7 @@ public class Report_5 extends HttpServlet implements Constants{
         }
         String file_name = "Courses" + date5_1 + "_" + date5_2 + "_onDate_" + System.currentTimeMillis();
 
-        support.createReportFile(response, file_name, type_report, collection);
+        support.createReportFile(response, file_name, type_report, collection, 5);
     }
 
     @Override

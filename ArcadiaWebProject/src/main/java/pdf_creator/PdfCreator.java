@@ -8,6 +8,7 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import firebase_communication.Collection;
 import pdf_creator.tableCreator.easytable.*;
+import support.Constants;
 
 import java.awt.*;
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class PdfCreator {
 
     public PdfCreator(String fileName, Collection collection, int reportType){
         // output file name
-        FILE_data = fileName + ".pdf_creator";
+        FILE_data = fileName + ".pdf";
         // current date in next format: 2014-09-10T17:11:35.847-07:00
         this.date = OffsetDateTime.now().toString();
         // text, which will be printed in pdf_creator
@@ -54,7 +55,7 @@ public class PdfCreator {
             // Writing name of Report
 
             // Insert logo
-            insertImage(document, page, System.getProperty("user.dir") + "\\logo.png", textCursor);
+            insertImage(document, page, Constants.ABSOLUTE_PATH + "logo.png", textCursor);
 
             textCursor.setAlignment(TextCursor.Align.CENTER);
             writeText( document, page, headers.get(0), 14, textCursor);
@@ -76,8 +77,7 @@ public class PdfCreator {
             if (document != null) {
                 // Saving the document
                 //  document.save("src\\main\\java\\support\\pdf_creator\\reports\\" + FILE_data) ;
-                String savePAth = System.getProperty("user.dir");
-                document.save( savePAth + "\\" + FILE_data) ;
+                document.save( Constants.ABSOLUTE_PATH + FILE_data) ;
                 //Closing the document
                 document.close() ;
             }
