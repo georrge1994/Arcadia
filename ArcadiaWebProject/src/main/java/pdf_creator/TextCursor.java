@@ -6,9 +6,6 @@ import org.apache.pdfbox.pdmodel.font.PDFont;
 
 import java.io.IOException;
 
-/**
- * Created by Татьяна on 10.04.2017.
- */
 public class TextCursor {
 
     public enum Align {
@@ -26,6 +23,10 @@ public class TextCursor {
     private float width;
     private float heightCounter;
     private Align alignment;
+
+    public TextCursor() {
+
+    }
 
     public TextCursor(PDPage page, float marginX, float marginY) {
         PDRectangle mediabox = page.getMediaBox();

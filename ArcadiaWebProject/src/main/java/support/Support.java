@@ -29,10 +29,10 @@ public class Support implements Constants{
 
         // Type PDF
         if (type_report != null) {
-            PdfCreator pdfCreator = new PdfCreator(file_name, collection, 1);
+            PdfCreator pdfCreator = new PdfCreator(file_name, collection);
             pdfCreator.createPDF();
-            typeFile = "Application/x-pdf_creator";
-            extension = ".pdf_creator";
+            typeFile = "Application/x-pdf";
+            extension = ".pdf";
 
         // Type XML
         } else {

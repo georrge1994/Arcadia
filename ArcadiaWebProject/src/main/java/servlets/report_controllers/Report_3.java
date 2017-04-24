@@ -40,7 +40,7 @@ public class Report_3 extends HttpServlet implements Constants{
             }
         }
 
-        String file_name = "UsersRating_" + date3_1 + "_" + date3_2 + "_onDate_" + System.currentTimeMillis();
+        String file_name = "UsersRatingBetweenDates_" + date3_1 + "_" + date3_2 + "_onDate_" + System.currentTimeMillis();
 
         support.createReportFile(response, file_name, type_report, collection);
     }
