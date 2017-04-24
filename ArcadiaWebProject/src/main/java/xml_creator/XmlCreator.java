@@ -47,37 +47,11 @@ public class XmlCreator implements Constants{
     int index_report;
     String object;
 
-    public XmlCreator(String file_name, Collection collection, int index_report){
+    public XmlCreator(String file_name, Collection collection, String object){
         this.collection = collection;
-        this.index_report = index_report;
+        this.object = object;
         FILE_data = file_name + ".xml";
 
-        makeReport();
-    }
-
-    public void makeReport(){
-
-        switch(this.index_report){
-            case(1):
-                this.object = "student";
-                break;
-            case(2):
-                this.object = "course";
-                break;
-            case(3):
-                this.object = "student";
-                break;
-            case(4):
-                this.object = "group";
-                break;
-            case(5):
-                this.object = "course";
-                break;
-            case(6):
-                break;
-            case(7):
-                break;
-        }
         try {
             writeDataXML();
         } catch (FileNotFoundException e) {
@@ -122,12 +96,10 @@ public class XmlCreator implements Constants{
 
         } catch (ParserConfigurationException e) {
         } finally {
-
             // save Document in XML-file
             String savePath = System.getProperty("user.dir") + "\\" + FILE_data;
-          
             if (doc != null)
-                writeDocument(doc, Constants.ABSOLUTE_PATH + FILE_data);
+                writeDocument(doc, System.getProperty("user.dir") + "\\" + FILE_data);
         }
     }
 

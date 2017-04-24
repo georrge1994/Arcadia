@@ -38,8 +38,8 @@ public class Report_4 extends HttpServlet implements Constants{
             }
         }
         String file_name = "GroupsRatingBetweenDates_" + date4_1 + "_" + date4_2 + "_onDate_" + System.currentTimeMillis();
-
-        support.createReportFile(response, file_name, type_report, collection);
+        String object = "group";
+        support.createReportFile(response, file_name, type_report, collection, object);
     }
 
     @Override

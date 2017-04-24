@@ -1,8 +1,8 @@
 package servlets.report_controllers;
 
 import firebase_communication.Collection;
-import support.Constants;
 import firebase_communication.DBConnector;
+import support.Constants;
 import support.Support;
 
 import javax.servlet.ServletException;
@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
-import static support.Support.getLongTime;
 
 
 @WebServlet("/report_5")
@@ -43,8 +41,8 @@ public class Report_5 extends HttpServlet implements Constants{
             }
         }
         String file_name = "Courses_" + date5_1 + "_" + date5_2 + "_onDate_" + System.currentTimeMillis();
-
-        support.createReportFile(response, file_name, type_report, collection);
+        String object = "course";
+        support.createReportFile(response, file_name, type_report, collection, object);
     }
 
 
