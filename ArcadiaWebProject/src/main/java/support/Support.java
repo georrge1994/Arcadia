@@ -5,6 +5,7 @@ import pdf_creator.PdfCreator;
 import xml_creator.XmlCreator;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
@@ -14,7 +15,6 @@ import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.TimeZone;
 
 /**
  * Created by Георгий on 21.04.2017.
@@ -23,20 +23,20 @@ public class Support implements Constants{
 
     /* Creates a file of the specified extension */
     public void createReportFile(HttpServletResponse response, String file_name, String type_report,
-                                 Collection collection, int reportType)  throws ServletException, IOException {
+                                 Collection collection)  throws ServletException, IOException {
 
         String extension, typeFile;
 
         // Type PDF
         if (type_report != null) {
-            PdfCreator pdfCreator = new PdfCreator(file_name, collection, reportType);
+            PdfCreator pdfCreator = new PdfCreator(file_name, collection);
             pdfCreator.createPDF();
             typeFile = "Application/x-pdf";
             extension = ".pdf";
 
         // Type XML
         } else {
-            XmlCreator tempCreator = new XmlCreator(file_name, collection, reportType);
+            XmlCreator tempCreator = new XmlCreator(file_name, collection, 1);
             typeFile = "Application/xml";
             extension = ".xml";
         }
@@ -60,18 +60,17 @@ public class Support implements Constants{
     }
 
 
-    /* Convert a data format ( from yyyy-mm-dd to seconds) */
+    /* Convert a data format ( from yyyy-mm-dd to ms) */
     public static final Long getLongTime(String string_date) {
-        long seconds = 0L;
+        long milliseconds = 0L;
 
         SimpleDateFormat f = new SimpleDateFormat("yyyy-mm-dd");
-        f.setTimeZone(TimeZone.getTimeZone("UTC"));
         try {
             Date d = f.parse(string_date);
-            seconds = d.getTime();
+            milliseconds = d.getTime();
         } catch (ParseException e) {
-            return seconds;
+            return 0L;
         }
-        return (seconds);
+        return (milliseconds);
     }
 }

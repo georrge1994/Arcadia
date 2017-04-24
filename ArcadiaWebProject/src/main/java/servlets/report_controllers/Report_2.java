@@ -29,8 +29,7 @@ public class Report_2 extends HttpServlet implements Constants{
         DBConnector.init();
         Collection collection = new Collection();
         DBConnector connector = new DBConnector();
-        connector.getCoursesBetweenDates(collection, 0, 1000000000);
-        //connector.getCoursesBetweenDates(collection, date_2_1, date_2_2);
+        connector.getCoursesBetweenDates(collection, date_2_1, date_2_2);
 
         synchronized (collection) {
             try {
@@ -41,7 +40,7 @@ public class Report_2 extends HttpServlet implements Constants{
 
         String file_name = "CoursesBetweenDates_" + date2_1 + "_" + date2_2 + "_onDate_" + System.currentTimeMillis();
 
-        support.createReportFile(response, file_name, type_report, collection, 2);
+        support.createReportFile(response, file_name, type_report, collection);
     }
 
     @Override

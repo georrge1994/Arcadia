@@ -20,8 +20,13 @@ public class Report_3 extends HttpServlet implements Constants{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String type_report = request.getParameter("report3_switch_pdf_or_xml");
+        String date3_1 = request.getParameter("report3_date_begin");
+        String date3_2 = request.getParameter("report3_date_end");
         String group = "hi";
         int rate = 15;
+
+        long date_3_1 = support.getLongTime(date3_1);
+        long date_3_2 = support.getLongTime(date3_2);
 
         DBConnector.init();
         Collection collection = new Collection();
@@ -35,9 +40,9 @@ public class Report_3 extends HttpServlet implements Constants{
             }
         }
 
-        String file_name = "UsersRating_" + group + "_" + rate + "_onDate_" + System.currentTimeMillis();
+        String file_name = "UsersRatingBetweenDates_" + date3_1 + "_" + date3_2 + "_onDate_" + System.currentTimeMillis();
 
-        support.createReportFile(response, file_name, type_report, collection, 3);
+        support.createReportFile(response, file_name, type_report, collection);
     }
 
     @Override
