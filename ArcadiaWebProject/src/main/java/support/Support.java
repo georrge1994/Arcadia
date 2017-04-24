@@ -5,7 +5,6 @@ import pdf_creator.PdfCreator;
 import xml_creator.XmlCreator;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +22,7 @@ public class Support implements Constants{
 
     /* Creates a file of the specified extension */
     public void createReportFile(HttpServletResponse response, String file_name, String type_report,
-                                 Collection collection)  throws ServletException, IOException {
+                                 Collection collection, String object)  throws ServletException, IOException {
 
         String extension, typeFile;
 
@@ -36,7 +35,7 @@ public class Support implements Constants{
 
         // Type XML
         } else {
-            XmlCreator tempCreator = new XmlCreator(file_name, collection, 1);
+            XmlCreator tempCreator = new XmlCreator(file_name, collection, object);
             typeFile = "Application/xml";
             extension = ".xml";
         }
