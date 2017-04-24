@@ -28,7 +28,7 @@ public class PdfCreator {
     Collection collection;
     private List<String> headers;
 
-    public PdfCreator(String fileName, Collection collection, int reportType){
+    public PdfCreator(String fileName, Collection collection){
         // output file name
         FILE_data = fileName + ".pdf";
         // current date in next format: 2014-09-10T17:11:35.847-07:00
@@ -99,14 +99,14 @@ public class PdfCreator {
     }
 
     private void createHeader (String fileName) {
-
         String header = "";
         String[] words = fileName.split("_");
         String[] camelCaseWords = words[0].split("(?=[A-Z])");
         for (String s: camelCaseWords) {
             header = header + s.toLowerCase() + " ";
         }
-        header += words[1] +" and " + words[2];
+        if (header.contains("between dates"))
+            header += words[1] +" and " + words[2];
         header = header.substring(0, 1).toUpperCase() + header.substring(1);
         headers.add(header);
     }

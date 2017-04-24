@@ -22,11 +22,14 @@ public class Report_5 extends HttpServlet implements Constants{
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String type_report = request.getParameter("report5_switch_pdf_or_xml");
-        String date5_1 = request.getParameter("report5_date_begin");
-        String date5_2 = request.getParameter("report5_date_end");
+        //String date5_1 = request.getParameter("report5_date_begin");
+        //String date5_2 = request.getParameter("report5_date_end");
 
-        long date_5_1 = getLongTime(date5_1);
-        long date_5_2 = getLongTime(date5_2);
+        String date5_1 = "report5_date_begin";
+        String date5_2 = "report5_date_end";
+
+        //long date_5_1 = support.getLongTime(date5_1);
+        //long date_5_2 = support.getLongTime(date5_2);
 
         DBConnector.init();
         Collection collection = new Collection();
@@ -39,7 +42,7 @@ public class Report_5 extends HttpServlet implements Constants{
             } catch (InterruptedException e) {
             }
         }
-        String file_name = "CoursesBetweenDates_" + date5_1 + "_" + date5_2 + "_onDate_" + System.currentTimeMillis();
+        String file_name = "Courses_" + date5_1 + "_" + date5_2 + "_onDate_" + System.currentTimeMillis();
 
         support.createReportFile(response, file_name, type_report, collection);
     }
