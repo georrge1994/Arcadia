@@ -1,32 +1,46 @@
 <html>
-<link href="CSS/style.css" rel="stylesheet" type="text/css">
+<link href="CSS/Style.css" rel="stylesheet" type="text/css">
 <link rel="shortcut icon" href="favicons.png">
 <head>
     <title>Report Designer</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
 
 </head>
+
 <body>
 <div class="tabHeadtext"> Report Designer
-    <div class="rightpic">
-        <img src="img/logo.png" width="196" height="53" alt=""/>
-    </div>
+    <div class="rightpic"> <img src="img/logo.png" width="196" height="53" alt=""/> </div>
 </div>
+
+
+
 <div class="tab">
     <div class="container">
-        <div class="btn-group btn-group-justified">
-            <a href="#" class="btn btn-primary tablinks" onclick="changeTab(event, 'R1')" id="defaultOpen">Report1</a>
-            <a href="#" class="btn btn-primary tablinks" onclick="changeTab(event, 'R2')">Report2</a>
-            <a href="#" class="btn btn-primary tablinks" onclick="changeTab(event, 'R3')">Report3</a>
-            <a href="#" class="btn btn-primary tablinks" onclick="changeTab(event, 'R4')">Report4</a>
-            <a href="#" class="btn btn-primary tablinks" onclick="changeTab(event, 'R5')">Report5</a>
-            <a href="#" class="btn btn-primary tablinks" onclick="changeTab(event, 'R6')">Report6</a>
-            <a href="#" class="btn btn-primary tablinks" onclick="changeTab(event, 'R7')">Report7</a>
+        <div class="btn-group btn-group-justified"> <a href="#" class="btn btn-primary tablinks" onclick="openRep(event, 'R1')" id="defaultOpen" >Period</a> <a href="#" class="btn btn-primary tablinks" onclick="openRep(event, 'R2')" > Course </a> <a href="#" class="btn btn-primary tablinks" onclick="openRep(event, 'R3')" > Users Rating </a> <a href="#" class="btn btn-primary tablinks" onclick="openRep(event, 'R4')"> Group Rating </a> <a href="#" class="btn btn-primary tablinks" onclick="openRep(event, 'R5')"> Courses Tests </a> <a href="#" class="btn btn-primary tablinks" > Empty </a>
+            <div class="btn-group">
+                <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle"> More <span class="caret"></span> </button>
+                <!-- Выпадающее меню -->
+                <ul class="dropdown-menu">
+                    <!-- Пункты меню -->
+
+                    <li> <a href="#"  onclick="openRep(event, 'R1')"  >Report 1</a> </li>
+                    <li> <a href="#" onclick="openRep(event, 'R2')" >Report 2</a> </li>
+                    <li> <a href="#" onclick="openRep(event, 'R3')" >Report 3</a> </li>
+                    <li> <a href="#" onclick="openRep(event, 'R4')">Report 4 </a> </li>
+                    <li> <a href="#" onclick="openRep(event, 'R5')">Report 5 </a> </li>
+                    <li> <a href="#"  onclick="openRep(event, 'R6')">Report 6 </a> </li>
+                    <li> <a href="#"  onclick="openRep(event, 'R7')">Report 7 </a> </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
+
 <div id="R1" class="tabcontent">
             <span class="design-block">
                 <div class="center">
@@ -39,13 +53,13 @@
                         <h5>Date1</h5>
                     </div>
                     <div class="black_betty">
-                        <input type="date" name="report1_date_begin">
+                        <input type="date" name="report1_date_begin" id="report1_date_begin">
                     </div>
                     <div>
                         <h5>Date2</h5>
                     </div>
                     <div class="black_betty">
-                        <input type="date" name="report1_date_end">
+                        <input type="date" name="report1_date_end" id="report1_date_end">
                     </div>
                     <div>
                         <h5>What kind of file should be formed?</h5>
@@ -59,16 +73,19 @@
                     </div>
                     <input type="text" name="index_report" style="display: none;" value="1">
                     <div class="center">
-                        <button type="submit" class="button" style="vertical-align:middle" name="report1_button_send">
-                            <span>SEND</span>
-                        </button>
+                          <button type="send" onmouseover="dateVeryfy()" class="button" style="vertical-align:middle" name="report1_button_send" id="report1_button_send">
+                              <span>SEND</span> </button>
                     </div>
                 </form>
             </span>
     <span class="view-block">
               <h3> Example of report </h3>
-              <div class="center">
-                <p> <img src="img/report1_pdf.png" width="554" height="788" alt=""/> </p>
+              <div class="center" id="imgs">
+                <p>
+
+                    <img src="img/report1_pdf.png" width="85%" height="150%" alt=""/>
+                    <img src="img/report1_xml.png" width="85%" height="150%" alt=""/>
+                </p>
               </div>
             </span></div>
 <div id="R2" class="tabcontent">
@@ -83,13 +100,13 @@
                   <h5>Date1</h5>
                 </div>
                 <div class="black_betty">
-                  <input type="date" name="report2_date_begin">
+                  <input type="date" name="report2_date_begin" id="report2_date_begin">
                 </div>
                 <div>
                   <h5>Date2</h5>
                 </div>
                 <div class="black_betty">
-                  <input type="date" name="report2_date_end">
+                  <input type="date" name="report2_date_end"  id="report2_date_end">
                 </div>
                 <div>
                   <h5>Course:</h5>
@@ -114,15 +131,18 @@
                 </div>
                   <input type="text" name="index_report" style="display: none;" value="2">
                 <div class="center">
-                  <button class="button" style="vertical-align:middle"
+                  <button onmouseover="dateVeryfy2()" class="button" style="vertical-align:middle"
                           name="report2_button_send"> <span>SEND</span> </button>
                 </div>
               </form>
           </span>
     <span class="view-block">
               <h3> Example of report </h3>
-              <div class="center">
-                <p> <img src="img/report1_pdf.png" width="554" height="788" alt=""/> </p>
+              <div class="center" id="imgs2">
+
+
+                <p> <img src="img/report2_pdf.png" width="85%" height="150%" alt=""/>
+                    <img src="img/report2_xml.png" width="85%" height="150%" alt=""/></p>
               </div>
             </span></div>
 <div id="R3" class="tabcontent">
@@ -137,13 +157,13 @@
                   <h5>Date1</h5>
                 </div>
                 <div class="black_betty">
-                  <input type="date" name="report3_date_begin">
+                  <input type="date" name="report3_date_begin" id="report3_date_begin">
                 </div>
                 <div>
                   <h5>Date2</h5>
                 </div>
                 <div class="black_betty">
-                  <input type="date" name="report3_date_end">
+                  <input type="date" name="report3_date_end" id="report3_date_end">
                 </div>
                 <div>
                   <h5>Group:</h5>
@@ -179,15 +199,17 @@
                 </div>
                   <input type="text" name="index_report" style="display: none;" value="3">
                 <div class="center">
-                  <button class="button" style="vertical-align:middle"
+                  <button onmouseover="dateVeryfy3()" class="button" style="vertical-align:middle"
                           name="report3_button_send"> <span>SEND</span> </button>
                 </div>
               </form>
             </span>
     <span class="view-block">
               <h3> Example of report </h3>
-              <div class="center">
-                <p> <img src="img/report1_pdf.png" width="554" height="788" alt=""/> </p>
+              <div id="imgs3" class="center" >
+                <p>
+                    <img src="img/report3_pdf.png" width="85%" height="150%" alt=""/>
+                    <img src="img/report3_xml.png" width="85%" height="150%" alt=""/></p>
               </div>
             </span>
 </div>
@@ -214,13 +236,13 @@
                   <h5>Date1</h5>
                 </div>
                 <div class="black_betty">
-                  <input type="date" name="report4_date_begin">
+                  <input type="date" name="report4_date_begin" id="report4_date_begin">
                 </div>
                 <div>
                   <h5>Date2</h5>
                 </div>
                 <div class="black_betty">
-                  <input type="date" name="report4_date_end">
+                  <input type="date" name="report4_date_end" id="report4_date_end">
                 </div>
                 <div>
                   <h5>Rating:</h5>
@@ -245,15 +267,16 @@
                 </div>
                   <input type="text" name="index_report" style="display: none;" value="4">
                 <div class="center">
-                  <button class="button" style="vertical-align:middle"
+                  <button onmouseover="dateVeryfy4()" class="button" style="vertical-align:middle"
                           name="report4_button_send"> <span>SEND</span> </button>
                 </div>
               </form>
           </span>
     <span class="view-block">
               <h3> Example of report </h3>
-              <div class="center">
-                <p> <img src="img/report1_pdf.png" width="554" height="788" alt=""/> </p>
+              <div class="center" id="imgs4">
+                <p> <img src="img/report4_pdf.png" width="85%" height="150%" alt=""/>
+                    <img src="img/report4_xml.png" width="85%" height="150%" alt=""/> </p>
               </div>
             </span>
 </div>
@@ -294,8 +317,9 @@
             </span>
     <span class="view-block">
               <h3> Example of report </h3>
-              <div class="center">
-                <p> <img src="img/report1_pdf.png" width="554" height="788" alt=""/> </p>
+              <div class="center" id="imgs5">
+                <p> <img src="img/report5_pdf.png" width="85%" height="150%" alt=""/>
+                    <img src="img/report5_xml.png" width="85%" height="150%" alt=""/> </p>
               </div>
             </span>
 </div>
@@ -346,13 +370,13 @@
                       <h5>Date1</h5>
                     </div>
                     <div class="black_betty">
-                      <input type="date" name="report6_date_begin">
+                      <input type="date" name="report6_date_begin" id="report6_date_begin">
                     </div>
                     <div>
                       <h5>Date2</h5>
                     </div>
                     <div class="black_betty">
-                      <input type="date" name="report6_date_end">
+                      <input type="date" name="report6_date_end" id="report6_date_end">
                     </div>
                     <div>
                       <h5>Rating:</h5>
@@ -376,7 +400,7 @@
                       </label>
                     </div>
                     <div class="center">
-                      <button class="button" style="vertical-align:middle" name="report6_button_send"> <span>SEND</span> </button>
+                      <button  onmouseover="dateVeryfy6()" class="button" style="vertical-align:middle" name="report6_button_send" > <span>SEND</span> </button>
                     </div>
                 </form>
             </span>
@@ -423,13 +447,13 @@
                       <h5>Date1</h5>
                     </div>
                     <div class="black_betty">
-                      <input type="date" name="report7_date_begin">
+                      <input type="date" name="report7_date_begin" id="report7_date_begin">
                     </div>
                     <div>
                       <h5>Date2</h5>
                     </div>
                     <div class="black_betty">
-                      <input type="date" name="report7_date_end">
+                      <input type="date" name="report7_date_end" id="report7_date_end">
                     </div>
                     <div>
                       <h5>Rating:</h5>
@@ -464,7 +488,7 @@
                       </label>
                     </div>
                     <div class="center">
-                      <button class="button" style="vertical-align:middle" name="report7_button_send"> <span>SEND</span> </button>
+                      <button onmouseover="dateVeryfy7()" class="button" style="vertical-align:middle" name="report7_button_send"> <span>SEND</span> </button>
                     </div>
                 </form>
             </span>
@@ -476,8 +500,10 @@
             </span>
 </div>
 </body>
+
+<script type="text/javascript" src="js/table.js"></script>
+<script type="text/javascript" src="js/gallery.js"></script>
+<script type="text/javascript" src="js/date.js"></script>
 </html>
 
-<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript" src="js/report-designer.js"></script>
+
