@@ -1,5 +1,5 @@
 <html>
-<link href="CSS/Style.css" rel="stylesheet" type="text/css">
+<link href="CSS/style.css" rel="stylesheet" type="text/css">
 <link rel="shortcut icon" href="favicons.png">
 <head>
     <title>Report Designer</title>
@@ -21,18 +21,24 @@
 
 <div class="tab">
     <div class="container">
-        <div class="btn-group btn-group-justified"> <a href="#" class="btn btn-primary tablinks" onclick="openRep(event, 'R1')" id="defaultOpen" >Period</a> <a href="#" class="btn btn-primary tablinks" onclick="openRep(event, 'R2')" > Course </a> <a href="#" class="btn btn-primary tablinks" onclick="openRep(event, 'R3')" > Users Rating </a> <a href="#" class="btn btn-primary tablinks" onclick="openRep(event, 'R4')"> Group Rating </a> <a href="#" class="btn btn-primary tablinks" onclick="openRep(event, 'R5')"> Courses Tests </a> <a href="#" class="btn btn-primary tablinks" > Empty </a>
+        <div class="btn-group btn-group-justified">
+            <a href="#" class="btn btn-primary tablinks" onclick="openRep(event, 'R1')" id="defaultOpen" >Period</a>
+            <a href="#" class="btn btn-primary tablinks" onclick="openRep(event, 'R2')" > Course </a>
+            <a href="#" class="btn btn-primary tablinks" onclick="openRep(event, 'R3')" > Users Rating </a>
+            <a href="#" class="btn btn-primary tablinks" onclick="openRep(event, 'R4')"> Group Rating </a>
+            <a href="#" class="btn btn-primary tablinks" onclick="openRep(event, 'R5')"> Courses Tests </a>
+            <a href="#" class="btn btn-primary tablinks" > Empty </a>
             <div class="btn-group">
                 <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle"> More <span class="caret"></span> </button>
                 <!-- Выпадающее меню -->
                 <ul class="dropdown-menu">
                     <!-- Пункты меню -->
 
-                    <li> <a href="#"  onclick="openRep(event, 'R1')"  >Report 1</a> </li>
-                    <li> <a href="#" onclick="openRep(event, 'R2')" >Report 2</a> </li>
-                    <li> <a href="#" onclick="openRep(event, 'R3')" >Report 3</a> </li>
-                    <li> <a href="#" onclick="openRep(event, 'R4')">Report 4 </a> </li>
-                    <li> <a href="#" onclick="openRep(event, 'R5')">Report 5 </a> </li>
+                    <li> <a href="#"  onclick="openRep(event, 'R1')"  >Period </a> </li>
+                    <li> <a href="#" onclick="openRep(event, 'R2')" >Course </a> </li>
+                    <li> <a href="#" onclick="openRep(event, 'R3')" >Users Rating </a> </li>
+                    <li> <a href="#" onclick="openRep(event, 'R4')">Group Rating </a> </li>
+                    <li> <a href="#" onclick="openRep(event, 'R5')">Courses Tests </a> </li>
                     <li> <a href="#"  onclick="openRep(event, 'R6')">Report 6 </a> </li>
                     <li> <a href="#"  onclick="openRep(event, 'R7')">Report 7 </a> </li>
                 </ul>
@@ -215,46 +221,48 @@
 </div>
 <div id="R4" class="tabcontent">
             <span class="design-block">
-              <div class="center">
+             <!-- <div class="center">
                 <h3>Select the report components:</h3>
               </div>
-              <p>Rating of groups:</p>
-              <form name="report4_form" method="get" action="http://localhost:8080/report_4">
-                <div>
-                  <h5>Course:</h5>
-                </div>
-                <div class="black_betty">
-                  <select name="report4_select_Course">
-                    <option>Course 1</option>
-                    <option>Course 2</option>
-                    <option>Course 3</option>
-                    <option>Course 4</option>
-                  </select>
-                </div>
-                <p> Date Range:</p>
-                <div>
-                  <h5>Date1</h5>
-                </div>
-                <div class="black_betty">
-                  <input type="date" name="report4_date_begin" id="report4_date_begin">
-                </div>
-                <div>
-                  <h5>Date2</h5>
-                </div>
-                <div class="black_betty">
-                  <input type="date" name="report4_date_end" id="report4_date_end">
-                </div>
-                <div>
-                  <h5>Rating:</h5>
-                </div>
-                <div class="black_betty">
-                  <select name="report4_select_raiting" id="select4">
-                    <option>10</option>
-                    <option>20</option>
-                    <option>30</option>
-                    <option>40</option>
-                  </select>
-                </div>
+                  <p>Rating of groups:</p>-->
+                  <form name="report4_form" method="get" action="http://localhost:8080/report_4">
+
+                   <!-- <div>
+                      <h5>Course:</h5>
+                    </div>
+                    <div class="black_betty">
+                      <select name="report4_select_Course">
+                        <option>Course 1</option>
+                        <option>Course 2</option>
+                        <option>Course 3</option>
+                        <option>Course 4</option>
+                      </select>
+                    </div>
+                    <p> Date Range:</p>
+                    <div>
+                      <h5>Date1</h5>
+                    </div>
+                    <div class="black_betty">
+                      <input type="date" name="report4_date_begin" id="report4_date_begin">
+                    </div>
+                    <div>
+                      <h5>Date2</h5>
+                    </div>
+                    <div class="black_betty">
+                      <input type="date" name="report4_date_end" id="report4_date_end">
+                    </div>
+                    <div>
+                      <h5>Rating:</h5>
+                    </div>
+                    <div class="black_betty">
+                      <select name="report4_select_raiting" id="select4">
+                        <option>10</option>
+                        <option>20</option>
+                        <option>30</option>
+                        <option>40</option>
+                      </select>
+                    </div>  -->
+
                 <div>
                   <h5>What kind of file should be formed?</h5>
                 </div>
@@ -282,12 +290,12 @@
 </div>
 <div id="R5" class="tabcontent">
             <span class="design-block">
-              <div class="center">
+            <!--   <div class="center">
                 <h3>Select the report components:</h3>
               </div>
-              <p>Number of tests in the course:</p>
+              <p>Number of tests in the course:</p> -->
               <form name="report5_form" method="get" action="http://localhost:8080/report_5">
-                <div>
+            <!--     <div>
                   <h5>Course:</h5>
                 </div>
                 <div class="black_betty">
@@ -297,7 +305,7 @@
                     <option>Course 3</option>
                     <option>Course 4</option>
                   </select>
-                </div>
+                </div> -->
                 <div>
                   <h5>What kind of file should be formed?</h5>
                 </div>
@@ -325,12 +333,12 @@
 </div>
 <div id="R6" class="tabcontent">
             <span class="design-block">
-                <div class="center">
+               <!--    <div class="center">
                     <h3>Select the report components:</h3>
                 </div>
-                <p>Number of tests in the course:</p>
+                <p>Number of tests in the course:</p> -->
                 <form name="report6_form">
-                    <div>
+               <!--     <div>
                       <h5>Group:</h5>
                     </div>
                     <div class="black_betty">
@@ -388,7 +396,7 @@
                         <option>30</option>
                         <option>40</option>
                       </select>
-                    </div>
+                    </div> -->
                     <div>
                       <h5>What kind of file should be formed?</h5>
                     </div>
@@ -413,7 +421,7 @@
 </div>
 <div id="R7" class="tabcontent">
             <span class="design-block">
-                <div class="center">
+           <!--     <div class="center">
                     <h3>Select the report components:</h3>
                 </div>
                 <p>Number of tests in the course:</p>
@@ -476,7 +484,7 @@
                         <option>Student 3</option>
                         <option>Student 4</option>
                       </select>
-                    </div>
+                    </div> -->
                     <div>
                       <h5>What kind of file should be formed?</h5>
                     </div>
@@ -499,7 +507,13 @@
                 </div>
             </span>
 </div>
+
+<div class="design-block">
+
+</div>
 </body>
+
+
 
 <script type="text/javascript" src="js/table.js"></script>
 <script type="text/javascript" src="js/gallery.js"></script>
