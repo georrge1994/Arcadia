@@ -1,11 +1,16 @@
 function dateVeryfy()
 {
+
     var x1 = document.getElementById("report1_date_begin").value;
     var x2 = document.getElementById("report1_date_end").value;
     if (x1>=x2)
     {
         alert( " Sorry, wrong date entered" );
+       /* document.getElementsById("report1_form").onsubmit=false;*/
+        document.getElementsById("report1_button_send").onsubmit=false;
+
     }
+    document.getElementsById("report1_button_send").onsubmit=true;
 }
 
 function dateVeryfy2()
