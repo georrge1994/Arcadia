@@ -20,13 +20,24 @@ public class Report_3 extends HttpServlet implements Constants{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String type_report = request.getParameter("report3_switch_pdf_or_xml");
-        String date3_1 = request.getParameter("report3_date_begin");
-        String date3_2 = request.getParameter("report3_date_end");
-        String group = "hi";
-        int rate = 15;
+        String group = request.getParameter("report3_select_rating");
+        String count = request.getParameter("report3_number");
 
-        //long date_3_1 = support.getLongTime(date3_1);
-        //long date_3_2 = support.getLongTime(date3_2);
+        switch (group){
+            case "top rated": group = "hi";
+            break;
+            case "low rated": group = "low";
+            break;
+            default: group = "hi";
+        }
+        int rate;
+
+        try
+        {   rate = Integer.parseInt(count); }
+        catch (NumberFormatException e)
+        {
+            rate = 0;
+        }
 
         DBConnector.init();
         Collection collection = new Collection();

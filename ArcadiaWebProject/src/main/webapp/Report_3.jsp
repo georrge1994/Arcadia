@@ -62,8 +62,8 @@
                 </div>
                 <div class="black">
                   <select name="report3_select_rating">
-                    <option>toprating </option>
-                    <option>lowestrating</option>
+                    <option>top rated</option>
+                    <option>low rated</option>
                   </select>
                 </div>
 
