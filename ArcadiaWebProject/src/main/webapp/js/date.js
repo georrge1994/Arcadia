@@ -4,7 +4,7 @@ function dateVeryfy()
     var x2 = document.getElementById("report1_date_end").value;
     if (x1>=x2)
     {
-        alert( " Sorry, Date 2 can't be less than Date 1" );
+        alert( " Sorry, wrong date entered" );
     }
 }
 
@@ -14,7 +14,7 @@ function dateVeryfy2()
     var x2 = document.getElementById("report2_date_end").value;
     if (x1>=x2)
     {
-        alert( " Sorry, Date 2 can't be less than Date 1" );
+        alert( " Sorry, wrong date entered" );
     }
 }
 
@@ -24,7 +24,7 @@ function dateVeryfy3()
     var x2 = document.getElementById("report3_date_end").value;
     if (x1>=x2)
     {
-        alert( " Sorry, Date 2 can't be less than Date 1" );
+        alert( " Sorry, wrong date entered" );
     }
 }
 
@@ -34,7 +34,7 @@ function dateVeryfy4()
     var x2 = document.getElementById("report4_date_end").value;
     if (x1>=x2)
     {
-        alert( " Sorry, Date 2 can't be less than Date 1" );
+        alert( " Sorry, wrong date entered" );
     }
 }
 
@@ -45,7 +45,8 @@ function dateVeryfy6()
     var x2 = document.getElementById("report6_date_end").value;
     if (x1>=x2)
     {
-        alert( " Sorry, Date 2 can't be less than Date 1" );
+        alert( " Sorry, wrong date entered" );
+
     }
 }
 
@@ -55,7 +56,7 @@ function dateVeryfy7()
     var x2 = document.getElementById("report7_date_end").value;
     if (x1>=x2)
     {
-        alert( " Sorry, Date 2 can't be less than Date 1" );
+        alert( " Sorry, wrong date entered" );
     }
 }
 
