@@ -22,6 +22,6 @@ public class ReportDesigner extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/report_designer.jsp").forward(request, response);
+        request.getRequestDispatcher("/ReportRegisterStudents.jsp").forward(request, response);
     }
 }

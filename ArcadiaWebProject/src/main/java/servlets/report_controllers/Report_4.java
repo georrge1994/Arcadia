@@ -23,8 +23,8 @@ public class Report_4 extends HttpServlet implements Constants{
         String date4_1 = request.getParameter("report4_date_begin");
         String date4_2 = request.getParameter("report4_date_end");
 
-        long date_4_1 = support.getLongTime(date4_1);
-        long date_4_2 = support.getLongTime(date4_2);
+        //long date_4_1 = support.getLongTime(date4_1);
+        //long date_4_2 = support.getLongTime(date4_2);
 
         DBConnector.init();
         Collection collection = new Collection();
@@ -37,7 +37,7 @@ public class Report_4 extends HttpServlet implements Constants{
             } catch (InterruptedException e) {
             }
         }
-        String file_name = "GroupsRatingBetweenDates_" + date4_1 + "_" + date4_2 + "_onDate_" + System.currentTimeMillis();
+        String file_name = "GroupsRating_onDate_" + System.currentTimeMillis();
         String object = "group";
         support.createReportFile(response, file_name, type_report, collection, object);
     }
