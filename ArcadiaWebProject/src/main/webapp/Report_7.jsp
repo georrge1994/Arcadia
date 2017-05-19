@@ -133,7 +133,7 @@
             </span>
     <span class="view-block">
 
-                <h3> Example of report </h3>
+                <h3> Sample report </h3>
                 <div class="center">
                 <!--    <p> <img src="img/report1_pdf.png" width="554" height="788" alt=""/> </p> -->
                 </div>

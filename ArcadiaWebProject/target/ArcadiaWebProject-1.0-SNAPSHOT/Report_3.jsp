@@ -1,6 +1,8 @@
 <html>
 <link href="CSS/style.css" rel="stylesheet" type="text/css">
 <link rel="shortcut icon" href="favicons.png">
+<link href="CSS/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="CSS/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 <head>
     <title>Report Designer</title>
     <meta charset="utf-8">
@@ -62,8 +64,8 @@
                 </div>
                 <div class="black">
                   <select name="report3_select_rating">
-                    <option>toprating </option>
-                    <option>lowestrating</option>
+                    <option>top rated</option>
+                    <option>low rated</option>
                   </select>
                 </div>
 
@@ -92,7 +94,7 @@
               </form>
             </span>
     <span class="view-block">
-              <h3> Example of report </h3>
+              <h3> Sample report </h3>
               <div id="imgs3" class="center" >
                 <p>
                     <img class="gallery"  src="img/report3_pdf.png" />
@@ -106,4 +108,6 @@
 
 <script type="text/javascript" src="js/gallery.js"></script>
 <script type="text/javascript" src="js/date.js"></script>
+<script type="text/javascript" src="tcal_en.js"></script> 
+	<link rel="stylesheet" type="text/css" href="tcal.css" />
 </html>

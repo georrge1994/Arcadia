@@ -1,14 +1,18 @@
 <html>
 <link href="CSS/style.css" rel="stylesheet" type="text/css">
 <link rel="shortcut icon" href="favicons.png">
+<link href="CSS/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="CSS/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 <head>
     <title>Report Designer</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
+	
 
 </head>
 <body>
@@ -60,18 +64,34 @@
               </div>
               <p>Number of students who have registered for the selected period for the course:</p>
               <p> Date Range:</p>
-              <form name="report2_form" method="get" action="http://localhost:8080/report_2">
+              <form name="report2_form" id="report2_form" method="get" >
                 <div>
                   <h5>Date1</h5>
                 </div>
                 <div class="black">
-                  <input type="date" name="report2_date_begin" id="report2_date_begin">
+                 
+				 
+				  <div class="controls input-append date form_date" data-date="" data-date-format="dd.mm.yy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input size="16" type="text"  name="report2_date_begin" id="report2_date_begin" value="" readonly>
+                    <span class="add-on"><i class="icon-remove"></i></span>
+					<span class="add-on"><i class="icon-th"></i></span>
+                </div>
+				<input type="hidden" id="dtp_input2" value="" /><br/>
+				  
                 </div>
                 <div>
                   <h5>Date2</h5>
                 </div>
                 <div class="black">
-                  <input type="date" name="report2_date_end"  id="report2_date_end">
+				
+				
+				<div class="controls input-append date form_date" data-date="" data-date-format="dd.mm.yy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input size="16" type="text"  name="report2_date_end" id="report2_date_end" value="" readonly>
+                    <span class="add-on"><i class="icon-remove"></i></span>
+					<span class="add-on"><i class="icon-th"></i></span>
+                </div>
+				<input type="hidden" id="dtp_input2" value="" /><br/>
+                
                 </div>
                   <!--    <div>
                         <h5>Course:</h5>
@@ -96,13 +116,13 @@
                       </div>
                         <input type="text" name="index_report" style="display: none;" value="2">
                       <div class="center">
-                        <button onclick="dateVeryfy2()" class="button" style="vertical-align:middle"
+                        <button onclick="dverify()" class="button" style="vertical-align:middle"
                                 name="report2_button_send"> <span>SEND</span> </button>
                       </div>
                     </form>
                 </span>
           <span class="view-block">
-                    <h3> Example of report </h3>
+                    <h3> Sample report </h3>
                     <div class="center" id="imgs2">
 
 
@@ -112,7 +132,41 @@
                   </span></div>
 
       </body>
+<script type="text/javascript" src="js/gallery.js"></script>
+<script type="text/javascript" src="js/date.js"></script>
+<script > 
+function dverify(){
+if (dateVeryfy(document.getElementById("report2_date_begin").value,document.getElementById("report2_date_end").value)==1)
+{
+	document.getElementById("report2_form").action="http://localhost:8080/report_2";
+}
+}
+</script>
 
-      <script type="text/javascript" src="js/gallery.js"></script>
-      <script type="text/javascript" src="js/date.js"></script>
+<script > 
+					var now = new Date();
+					
+					document.getElementById("report2_date_begin").value=formatDate(now);
+					document.getElementById("report2_date_end").value=formatDate(now);
+					
+				</script>
+	
+<script type="text/javascript" src="js/jquery-1.8.3.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="sample in bootstrap v2/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+<script type="text/javascript">
+   
+	$('.form_date').datetimepicker({
+        language:  'en',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+	
+</script>
       </html>
