@@ -1,67 +1,32 @@
-function dateVeryfy()
+function dateVeryfy(x1,x2)
 {
-
-    var x1 = document.getElementById("report1_date_begin").value;
-    var x2 = document.getElementById("report1_date_end").value;
+ 
     if (x1>=x2)
     {
-        alert( " Sorry, wrong date entered" );
-       /* document.getElementsById("report1_form").onsubmit=false;*/
-        document.getElementsById("report1_button_send").onsubmit=false;
-
-    }
-    document.getElementsById("report1_button_send").onsubmit=true;
+        alert( " Sorry, wrong date entered!" );
+		event.preventDefault();
+		return 0;
+		
+		
+    } else {
+		
+		
+		return 1;
+		
+	}
+    
 }
 
-function dateVeryfy2()
-{
-    var x1 = document.getElementById("report2_date_begin").value;
-    var x2 = document.getElementById("report2_date_end").value;
-    if (x1>=x2)
-    {
-        alert( " Sorry, wrong date entered" );
-    }
-}
+function formatDate(date) {
 
-function dateVeryfy3()
-{
-    var x1 = document.getElementById("report3_date_begin").value;
-    var x2 = document.getElementById("report3_date_end").value;
-    if (x1>=x2)
-    {
-        alert( " Sorry, wrong date entered" );
-    }
-}
+					  var dd = date.getDate();
+					  if (dd < 10) dd = '0' + dd;
 
-function dateVeryfy4()
-{
-    var x1 = document.getElementById("report4_date_begin").value;
-    var x2 = document.getElementById("report4_date_end").value;
-    if (x1>=x2)
-    {
-        alert( " Sorry, wrong date entered" );
-    }
-}
+					  var mm = date.getMonth() + 1;
+					  if (mm < 10) mm = '0' + mm;
 
+					  var yy = date.getFullYear() % 100;
+					  if (yy < 10) yy = '0' + yy;
 
-function dateVeryfy6()
-{
-    var x1 = document.getElementById("report6_date_begin").value;
-    var x2 = document.getElementById("report6_date_end").value;
-    if (x1>=x2)
-    {
-        alert( " Sorry, wrong date entered" );
-
-    }
-}
-
-function dateVeryfy7()
-{
-    var x1 = document.getElementById("report7_date_begin").value;
-    var x2 = document.getElementById("report7_date_end").value;
-    if (x1>=x2)
-    {
-        alert( " Sorry, wrong date entered" );
-    }
-}
-
+					  return dd + '.' + mm + '.' + yy;
+					}

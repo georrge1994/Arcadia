@@ -111,7 +111,7 @@
               </form>
           </span>
     <span class="view-block">
-              <h3> Example of report </h3>
+              <h3> Sample report </h3>
               <div class="center" id="imgs4">
                 <p> <img class="gallery"  src="img/report4_pdf.png" />
                     <img class="gallery"  src="img/report4_xml.png" /> </p>

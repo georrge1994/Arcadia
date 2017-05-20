@@ -85,7 +85,7 @@
               </form>
             </span>
     <span class="view-block">
-              <h3> Example of report </h3>
+              <h3> Sample report </h3>
               <div class="center" id="imgs5">
                 <p> <img class="gallery"  src="img/report5_pdf.png" />
                     <img class="gallery"  src="img/report5_xml.png" /> </p>
