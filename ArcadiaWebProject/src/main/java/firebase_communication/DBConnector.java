@@ -139,9 +139,9 @@ public class DBConnector {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 synchronized (collection) {
                     ArrayList<String> names = new ArrayList<String>();
-                    names.add("name");
-                    names.add("email");
-                    names.add("rating");
+                    names.add("Name");
+                    names.add("Email");
+                    names.add("Rating");
                     collection.addArrayList(names);
 
                     if ((type.equals("hi") || type.equals("low")) && (howMuch > 0)) {

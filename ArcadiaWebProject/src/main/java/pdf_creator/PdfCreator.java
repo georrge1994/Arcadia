@@ -57,15 +57,16 @@ public class PdfCreator {
 
             formatDate(collection);
 
+            // Writing name of report
+            page = showReportName(textCursor, page, document);
+
+            textCursor.setAlignment(TextCursor.Align.LEFT);
             // Writing additional information
             showAdditionalText(textCursor, page, document);
 
-            textCursor.setCursorToLeft();
-
-            // Writing main information
-            createTable(document, page, collection.outer, textCursor);
-
             textCursor.setAlignment(TextCursor.Align.LEFT);
+            // Writing main information
+            page  = createTable(document, page, collection.outer, textCursor);
 
             // Writing additional information
             if (headers.size() == 2)
@@ -75,7 +76,6 @@ public class PdfCreator {
         finally {
             if (document != null) {
                 // Saving the document
-                //  document.save("src\\main\\java\\support\\pdf_creator\\reports\\" + FILE_data) ;
                 String savePAth = System.getProperty("user.dir");
                 document.save( savePAth + "\\" + FILE_data) ;
                 //Closing the document
@@ -129,65 +129,106 @@ public class PdfCreator {
         return page;
     }
 
-    public void showAdditionalText(TextCursor textCursor, PDPage page, PDDocument document) throws IOException {
-
+    public PDPage showReportName (TextCursor textCursor, PDPage page, PDDocument document) throws IOException {
         // Writing name of Report and date of creation
         textCursor.setAlignment(TextCursor.Align.CENTER);
-        writeText( document, page, headers.get(0), 14, textCursor);
-        writeText( document, page, date, 12, textCursor);
+        page = writeText( document, page, headers.get(0), 14, textCursor);
+        page = writeText( document, page, date, 12, textCursor);
+        return page;
+    }
+
+    public void showAdditionalText(TextCursor textCursor, PDPage page, PDDocument document) throws IOException {
 
         // Insert logo
         this.getClass().getClassLoader().getResourceAsStream("logo.png");
         insertImage(document, page, System.getProperty("user.dir") + "\\logo.png", textCursor);
-        //insertImage(document, page, ".\\resources\\images\\logo.png", textCursor);
 
         writePageNumber( document, page, pageCounter.toString(), 12);
     }
 
-    private void createTable(PDDocument document, PDPage page, List<ArrayList<String>> data, TextCursor textCursor) throws IOException {
+    private PDPage createTable(PDDocument document, PDPage page, List<ArrayList<String>> data, TextCursor textCursor) throws IOException {
 
         PDFont font = PDType1Font.TIMES_ROMAN;
         int fontSize = 12;
-        int i = 0;
+        float fontHeight = font.getFontDescriptor().getFontBoundingBox().getHeight() / 1000 * fontSize;
+        float ty = 0;
+        int flag = 0;
+        int countRows = 0;
+        int k = 0;
+        int startVal = 1;
         List<String> firstRow = data.get(0);
-
         List<Integer> columnLength = new ArrayList<>();
-
         Row.RowBuilder rowBuilder;
-        PDPageContentStream contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.APPEND, false);
+        PDPageContentStream contentStream = null;
+        defineColumnsLength(collection, textCursor, columnLength);
 
         try {
-            // Define the table structure
-            Table.TableBuilder tableBuilder = new Table.TableBuilder();
 
-            defineColumnsLength(collection, textCursor, columnLength);
+            while (k != data.size()) {
 
-            for (int j = 0 ; j < firstRow.size(); j++)
-                tableBuilder.addColumnOfWidth(columnLength.get(j));
+                contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.APPEND, false);
 
-            tableBuilder.setFontSize(fontSize).setFont(font);
+                // Define the table structure
+                Table.TableBuilder tableBuilder = new Table.TableBuilder();
 
-            data.size();
+                tableBuilder.setFontSize(fontSize).setFont(font);
 
-            // adding rows to the table
-            for (List<String> row : data) {
+                for (int j = 0; j < columnLength.size(); j++)
+                    tableBuilder.addColumnOfWidth(columnLength.get(j));
+
+                //firstRow
                 rowBuilder = new Row.RowBuilder();
-                for (String col : row) {
-                    rowBuilder.add(Cell.withText(col)
-                            .setHorizontalAlignment(/*i == 0 ? CENTER :*/ LEFT)
+                rowBuilder.add(Cell.withText('N')
+                        .setHorizontalAlignment(LEFT)
+                        .withHorizontalBorders());
+                for (int i = 0; i < firstRow.size(); i++) {
+                    rowBuilder.add(Cell.withText(firstRow.get(i))
+                            .setHorizontalAlignment(LEFT)
                             .withHorizontalBorders());
                 }
-                tableBuilder.addRow(rowBuilder.setBackgroundColor(i++ % 2 == 0 ? new Color(215, 238, 245) : Color.WHITE).build());
-            }
+                countRows++;
+                tableBuilder.addRow(rowBuilder.setBackgroundColor(new Color(215, 238, 245)).build());
 
-            float ty = (new TableDrawer(contentStream, tableBuilder.build(), textCursor.getCurentX(), textCursor.getCurentY())).draw();
+                for (k = startVal; k < data.size(); k++) {
+                    countRows++;
+                    if ((textCursor.getCurentY() - (fontHeight + 7) * countRows) < 60) {
+                        startVal = k;
+                        countRows = 0;
+                        flag = 1;
+                        break;
+                    }
+                    rowBuilder = new Row.RowBuilder();
+
+                    rowBuilder.add(Cell.withText(k)
+                            .setHorizontalAlignment(LEFT)
+                            .withHorizontalBorders());
+
+                    for (int i = 0; i < data.get(k).size(); i++) {
+                        rowBuilder.add(Cell.withText(data.get(k).get(i))
+                                .setHorizontalAlignment(LEFT)
+                                .withHorizontalBorders());
+                    }
+                    tableBuilder.addRow(rowBuilder.setBackgroundColor((countRows-1) % 2 == 0 ? new Color(215, 238, 245) : Color.WHITE).build());
+                }
+                if (flag == 1) {
+                    ty = (new TableDrawer(contentStream, tableBuilder.build(), textCursor.getCurentX(), textCursor.getCurentY())).draw();
+                    flag = 0;
+                    page = addNewPage(document, collection);
+                    textCursor.setCurentY(textCursor.getStartY() - textCursor.getMarginY());
+                    showReportName(textCursor, page, document);
+                    showAdditionalText(textCursor, page, document);
+                    contentStream.close();
+                }
+                else
+                    ty = (new TableDrawer(contentStream, tableBuilder.build(), textCursor.getCurentX(), textCursor.getCurentY())).draw();
+            }
             textCursor.setCurentY(ty - 20);
-            //contentStream.newLineAtOffset(-textCursor.getCurentX(),0);
         } finally {
             //Closing the content stream
             if (contentStream != null)
-                contentStream.close() ;
+                contentStream.close();
         }
+        return page;
     }
 
     private void defineColumnsLength (Collection collection, TextCursor textCursor, List<Integer> columnLength) {
@@ -195,7 +236,7 @@ public class PdfCreator {
         List<String> firstRow = collection.outer.get(0);
 
         // column's size
-        int length = 0;
+        int length;
         int cnt = 0;
         int k = 0;
         int width = (int)textCursor.getWidth() ;
@@ -209,13 +250,14 @@ public class PdfCreator {
                 k++;
         }
 
-        width = width - cnt * 80 - 250 * k;
+        width = width - cnt * 80 - 200 * k - 30/*for №*/;
         size = size - cnt - k;
         length = width / size;
 
+        columnLength.add(30);
         for (String header: firstRow) {
             if (header.contains("Email"))
-                columnLength.add(250);
+                columnLength.add(200);
             else if (header.contains("Date"))
                 columnLength.add(80);
             else
@@ -244,12 +286,12 @@ public class PdfCreator {
         contentStream.close() ;
     }
 
-    private void writeText(PDDocument document, PDPage page, String text, int fontSize, TextCursor textCursor) throws IOException {
+    private PDPage writeText(PDDocument document, PDPage page, String text, int fontSize, TextCursor textCursor) throws IOException {
 
         float leading = 1.5f * fontSize;
         PDFont font = PDType1Font.TIMES_ROMAN;
         PDPageContentStream contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.APPEND, false);
-
+        TextCursor.Align align = textCursor.getAlignment();
         int i = 0;
 
         // Split original text to short strings
@@ -264,19 +306,24 @@ public class PdfCreator {
             //Writing text in the form of string
             for (String line : lines) {
 
-                if ((textCursor.getCurentY()) < 42) {
+                if ((textCursor.getCurentY()) < 50) {
                     contentStream.endText();
+                    contentStream.close();
                     page = addNewPage(document, collection);
-                    textCursor.setCurentY(textCursor.getStartY() + textCursor.getMarginY());
+                    textCursor.setCurentY(textCursor.getStartY() - textCursor.getMarginY());
+                    showReportName(textCursor, page, document);
                     showAdditionalText(textCursor, page, document);
+                    contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.APPEND, false);
                     // starting content stream
                     contentStream.beginText();
                     contentStream.newLineAtOffset(textCursor.getCurentX(),textCursor.getCurentY());
+                    i = 0;
                 }
 
                 // setting font parameters: type and size
                 contentStream.setFont(font, fontSize);
                 if ( i == 0) {
+                    textCursor.setAlignment(align);
                     setAlignmnet(textCursor, line, font, fontSize);
                     i++;
                 }
@@ -294,6 +341,7 @@ public class PdfCreator {
             if (contentStream != null)
                 contentStream.close() ;
         }
+        return page;
     }
 
     private void setAlignmnet(TextCursor textCursor, String line, PDFont font, int fontSize) throws IOException {
@@ -323,8 +371,7 @@ public class PdfCreator {
                 String subString = text.substring(0, spaceIndex);
                 float size = fontSize * font.getStringWidth(subString) / 1000;
                 //System.out.printf("'%s' - %f of %f\n", subString, size, width);
-                if (size > width)
-                {
+                if (size > width) {
                     if (lastSpace < 0)
                         lastSpace = spaceIndex;
                     subString = text.substring(0, lastSpace);
@@ -333,19 +380,16 @@ public class PdfCreator {
                     //System.out.printf("'%s' is line\n", subString);
                     lastSpace = -1;
                 }
-                else if (spaceIndex == text.length())
-                {
+                else if (spaceIndex == text.length()) {
                     lines.add(text);
                     //System.out.printf("'%s' is line\n", text);
                     text = "";
                 }
-                else
-                {
+                else {
                     lastSpace = spaceIndex;
                 }
             }
         }
-
         return lines;
     }
 
