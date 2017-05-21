@@ -56,6 +56,7 @@ public class Support implements Constants{
 
         Path p = Paths.get(ABSOLUTE_PATH + fileName);
         response.getOutputStream().write(Files.readAllBytes(p));
+        my_file.delete();
     }
 
 
