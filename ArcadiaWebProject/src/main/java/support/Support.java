@@ -15,9 +15,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by Георгий on 21.04.2017.
- */
 public class Support implements Constants{
 
     /* Creates a file of the specified extension */
@@ -64,7 +61,7 @@ public class Support implements Constants{
     public static final Long getLongTime(String string_date) {
         long milliseconds = 0L;
 
-        SimpleDateFormat f = new SimpleDateFormat("yyyy-mm-dd");
+        SimpleDateFormat f = new SimpleDateFormat("dd.MM.yy");
         try {
             Date d = f.parse(string_date);
             milliseconds = d.getTime();

@@ -49,7 +49,7 @@ public class DBConnector {
                     collection.addArrayList(names);
                     if (date1 >= 0 && date2 >= 0 && date1 <= date2) {
                         for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
-                            Long date = ((Long) userSnapshot.child("dateCreated").getValue());
+                            Long date = ((Long) userSnapshot.child("dateCreated").getValue()) * 1000;
                             if (date >= date1 && date <= date2) {
                                 ArrayList<String> user = new ArrayList<String>();
                                 user.add((String) userSnapshot.child("name").getValue());
@@ -93,14 +93,17 @@ public class DBConnector {
                         }
                         for (DataSnapshot group : dataSnapshot.child("groupCourses").getChildren()) {
                             for (DataSnapshot course : group.child("courses").getChildren()) {
-                                if ((Long) course.child("dateStart").getValue() >= date1) {
+                                Long dateStart  = (Long) course.child("dateStart").getValue()   * 1000;
+                                Long dateEnd    = (Long) course.child("dateEnd").getValue()     * 1000;
+
+                                if (dateStart >= date1) {
                                     if (result.containsKey(course.getKey()))
                                         result.get(course.getKey()).addL(grCount.get(group.getKey()).longValue());
                                     else
                                         result.put(course.getKey(), new Pair(grCount.get(group.getKey()).longValue(), 0L));
                                 }
 
-                                if ((Long) course.child("dateEnd").getValue() <= date2) {
+                                if ( (dateEnd >= date1)&&(dateEnd <= date2)) {
                                     if (result.containsKey(course.getKey()))
                                         result.get(course.getKey()).addR(grCount.get(group.getKey()).longValue());
                                     else
