@@ -97,9 +97,9 @@ public class XmlCreator implements Constants{
         } catch (ParserConfigurationException e) {
         } finally {
             // save Document in XML-file
-            String savePath = System.getProperty("user.dir") + "\\" + FILE_data;
+            String savePath = Constants.ABSOLUTE_PATH + FILE_data;
             if (doc != null)
-                writeDocument(doc, System.getProperty("user.dir") + "\\" + FILE_data);
+                writeDocument(doc, savePath);
         }
     }
 

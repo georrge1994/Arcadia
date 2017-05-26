@@ -8,9 +8,11 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import firebase_communication.Collection;
 import pdf_creator.tableCreator.easytable.*;
+import support.Constants;
 
 import javax.xml.soap.Text;
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -76,8 +78,8 @@ public class PdfCreator {
         finally {
             if (document != null) {
                 // Saving the document
-                String savePAth = System.getProperty("user.dir");
-                document.save( savePAth + "\\" + FILE_data) ;
+                String savePath = Constants.ABSOLUTE_PATH;
+                document.save( savePath + "/" + FILE_data) ;
                 //Closing the document
                 document.close() ;
             }
@@ -140,8 +142,9 @@ public class PdfCreator {
     public void showAdditionalText(TextCursor textCursor, PDPage page, PDDocument document) throws IOException {
 
         // Insert logo
-        this.getClass().getClassLoader().getResourceAsStream("logo.png");
-        insertImage(document, page, System.getProperty("user.dir") + "\\logo.png", textCursor);
+        String logo = Constants.logo;
+        this.getClass().getClassLoader().getResourceAsStream(logo);
+        insertImage(document, page,Constants.ABSOLUTE_PATH + logo, textCursor);
 
         writePageNumber( document, page, pageCounter.toString(), 12);
     }
