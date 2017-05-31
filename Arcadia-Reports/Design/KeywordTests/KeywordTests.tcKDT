@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{9576DAFD-0ADD-41A8-9897-C72F150AF6BB}" version="12.0">
+	<children>
+		<child name="Period_test1_pdf" key="{755B15CF-771D-417F-B864-841D88265CBE}" type="Keyword Test" typeId="{B9D9273E-7266-43E0-BF02-97F168593604}" pluginName="Keyword Testing">
+			<data path="Period_test1_pdf.tcKDTest" />
+		</child>
+		<child name="Course_test1_pdf" key="{0204E830-8533-4D47-9C33-D6A0063E6C31}" type="Keyword Test" typeId="{B9D9273E-7266-43E0-BF02-97F168593604}" pluginName="Keyword Testing">
+			<data path="Course_test1_pdf.tcKDTest" />
+		</child>
+		<child name="Course_test2_xml" key="{BD98ED61-CB5E-43C7-B23B-35877FDAA5D1}" type="Keyword Test" typeId="{B9D9273E-7266-43E0-BF02-97F168593604}" pluginName="Keyword Testing">
+			<data path="Course_test2_xml.tcKDTest" />
+		</child>
+		<child name="User_rating_test1_pdf" key="{17F7C61D-6FC1-4CD9-833A-BE6E50580056}" type="Keyword Test" typeId="{B9D9273E-7266-43E0-BF02-97F168593604}" pluginName="Keyword Testing">
+			<data path="User_rating_test1_pdf.tcKDTest" />
+		</child>
+		<child name="User_rating_test2_xml" key="{784ECB0B-6769-4B55-8EA6-21AB95212005}" type="Keyword Test" typeId="{B9D9273E-7266-43E0-BF02-97F168593604}" pluginName="Keyword Testing">
+			<data path="User_rating_test2_xml.tcKDTest" />
+		</child>
+		<child name="Group_rating_test1_pdf" key="{106C9093-865C-484C-AA47-ED005E54A847}" type="Keyword Test" typeId="{B9D9273E-7266-43E0-BF02-97F168593604}" pluginName="Keyword Testing">
+			<data path="Group_rating_test1_pdf.tcKDTest" />
+		</child>
+		<child name="Period_test2_xml" key="{894307F2-FE61-486D-870F-E54BF6880A21}" type="Keyword Test" typeId="{B9D9273E-7266-43E0-BF02-97F168593604}" pluginName="Keyword Testing">
+			<data path="Period_test2_xml.tcKDTest" />
+		</child>
+		<child name="Group_rating_test2_xml" key="{29ED12EB-BBA1-4EA9-95F2-1DF9B1BF6072}" type="Keyword Test" typeId="{B9D9273E-7266-43E0-BF02-97F168593604}" pluginName="Keyword Testing">
+			<data path="Group_rating_test2_xml.tcKDTest" />
+		</child>
+		<child name="Course_test_test1_pdf" key="{F262AD91-AD96-4DF9-890C-BBC123105D63}" type="Keyword Test" typeId="{B9D9273E-7266-43E0-BF02-97F168593604}" pluginName="Keyword Testing">
+			<data path="Course_test_test1_pdf.tcKDTest" />
+		</child>
+		<child name="Course_test_test2_xml" key="{F69C92EE-B925-43AC-8923-C8B07EE619C1}" type="Keyword Test" typeId="{B9D9273E-7266-43E0-BF02-97F168593604}" pluginName="Keyword Testing">
+			<data path="Course_test_test2_xml.tcKDTest" />
+		</child>
+		<child name="more_test1" key="{C0607000-6C81-418E-BAEA-495BC372F61B}" type="Keyword Test" typeId="{B9D9273E-7266-43E0-BF02-97F168593604}" pluginName="Keyword Testing">
+			<data path="more_test1.tcKDTest" />
+		</child>
+		<child name="more_test2" key="{FA02C9A9-55F7-4118-BA0D-7425E5B4C3D7}" type="Keyword Test" typeId="{B9D9273E-7266-43E0-BF02-97F168593604}" pluginName="Keyword Testing">
+			<data path="more_test2.tcKDTest" />
+		</child>
+		<child name="more_test3" key="{8D941D50-E406-4BE5-A045-B230816526BC}" type="Keyword Test" typeId="{B9D9273E-7266-43E0-BF02-97F168593604}" pluginName="Keyword Testing">
+			<data path="more_test3.tcKDTest" />
+		</child>
+		<child name="more_test4" key="{CC7A6992-7975-4F8C-9C49-15F5D3167F2E}" type="Keyword Test" typeId="{B9D9273E-7266-43E0-BF02-97F168593604}" pluginName="Keyword Testing">
+			<data path="more_test4.tcKDTest" />
+		</child>
+		<child name="more_test5" key="{DF64AED2-86B5-4BFD-8E45-390AAA7B7F77}" type="Keyword Test" typeId="{B9D9273E-7266-43E0-BF02-97F168593604}" pluginName="Keyword Testing">
+			<data path="more_test5.tcKDTest" />
+		</child>
+	</children>
+	<folders />
+</Root>

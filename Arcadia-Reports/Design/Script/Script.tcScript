@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{9252F941-DB23-4FCA-AA50-858B33BB4A19}" version="11.40">
+	<children>
+		<child name="Unit1" key="{76298095-994C-47A0-9669-96F6AAE0BC07}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Unit1.py" />
+		</child>
+		<child name="Course_test_test1_pdf" key="{7758B7CE-CEE0-42E9-810C-C6F3A940B374}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Course_test_test1_pdf.py" />
+		</child>
+		<child name="Course_test_test2_xml" key="{6994CF65-8B56-4643-815C-F1FEDB95EC77}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Course_test_test2_xml.py" />
+		</child>
+		<child name="Course_test1_pdf" key="{CE6B543C-B772-4304-8E33-9C2846FA28CF}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Course_test1_pdf.py" />
+		</child>
+		<child name="Course_test2_xml" key="{F1BD3CB1-46DB-4F99-A788-C5997F380DE0}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Course_test2_xml.py" />
+		</child>
+		<child name="Group_rating_test1_pdf" key="{5268D809-FC90-42D7-A9C1-96EE3DE9E7A8}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Group_rating_test1_pdf.py" />
+		</child>
+		<child name="Group_rating_test2_xml" key="{8A90BA74-BFF3-466D-86E9-882998023B8A}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Group_rating_test2_xml.py" />
+		</child>
+		<child name="more_test1" key="{F00D31DC-67E9-4EA0-ABB0-473326AAC826}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="more_test1.py" />
+		</child>
+		<child name="more_test2" key="{34BD7247-F751-4F0A-8167-7B3DA5CBA810}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="more_test2.py" />
+		</child>
+		<child name="more_test3" key="{CE5D97BC-CE3C-4B83-8FD1-2D95D7A941B2}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="more_test3.py" />
+		</child>
+		<child name="more_test4" key="{C4FF3358-93C5-4F09-AC7D-3FFCCC7419C3}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="more_test4.py" />
+		</child>
+		<child name="more_test5" key="{7C1D508E-44EC-4219-9921-1064DB87D027}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="more_test5.py" />
+		</child>
+		<child name="Period_test1_pdf" key="{98C1BC05-C618-4065-92AE-0CED2211A3E8}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Period_test1_pdf.py" />
+		</child>
+		<child name="Period_test2_xml" key="{DC0341E0-FB98-45EE-B626-7B73B0A223A5}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Period_test2_xml.py" />
+		</child>
+		<child name="start_page_is_exist" key="{1BE00D75-E426-4D8E-8993-8DAE06668844}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="start_page_is_exist.py" />
+		</child>
+		<child name="User_rating_test1_pdf" key="{855630BD-4BE3-4167-97C1-0F52DF9C1A34}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="User_rating_test1_pdf.py" />
+		</child>
+		<child name="User_rating_test2_xml" key="{1FA22304-21D0-422B-ABCB-646EF84D36C3}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="User_rating_test2_xml.py" />
+		</child>
+	</children>
+	<folders />
+</Root>

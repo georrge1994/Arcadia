@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{42D2222C-ACA2-405F-8E67-05D5C42EB839}" version="2">
+	<data key="{7758B7CE-CEE0-42E9-810C-C6F3A940B374}">
+		<item typeId="{87B03792-E854-4F5D-9F33-165F1F874209}" version="2" lineNo="6" kind="0" dateTime="42886.8590856481" objectName="Aliases.browser.pageLocalhost8080ReportDesigner.panel.panel2.panel2" objectLeft="237" objectTop="218" objectRight="1662" objectBottom="261" clickPointX="-1" clickPointY="-1" imageFileName="tcvi50658751210801.png" storageFileName="tcvi50658751210801" needUpdate="False" rectColor="255" />
+		<item typeId="{87B03792-E854-4F5D-9F33-165F1F874209}" version="2" lineNo="10" kind="0" dateTime="42886.8591435185" objectName="Aliases.browser.pageLocalhost8080Report5Jsp.formReport5Form.textnode" objectLeft="175" objectTop="496" objectRight="262" objectBottom="524" clickPointX="200" clickPointY="509" imageFileName="tcvi50710311210821.png" storageFileName="tcvi50710311210821" needUpdate="False" rectColor="255" />
+		<item typeId="{87B03792-E854-4F5D-9F33-165F1F874209}" version="2" lineNo="14" kind="0" dateTime="42886.8592939815" objectName="Aliases.browser.dlg_.btn_" objectLeft="684" objectTop="543" objectRight="806" objectBottom="576" clickPointX="790" clickPointY="560" imageFileName="tcvi50842031210841.png" storageFileName="tcvi50842031210841" needUpdate="False" rectColor="255" />
+	</data>
+</Root>
